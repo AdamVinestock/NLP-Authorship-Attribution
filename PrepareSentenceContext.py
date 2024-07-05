@@ -1,9 +1,7 @@
 import logging
 import spacy
 import re
-from src.SentenceParser import SentenceParser
-from src.summarizer import summarize
-from src.QuestionGenerator import gen_question
+from SentenceParser import SentenceParser
 
 
 class PrepareSentenceContext(object):
@@ -34,16 +32,11 @@ class PrepareSentenceContext(object):
         tags = []
         num_in_par = []
         previous = None
-        summary_context = None
         previous_3 = []
 
         text = re.sub("(</?[a-zA-Z0-9 ]+>)\s+", r"\1. ", text)  # to make sure that tags are in separate sentences
         parsed = self.nlp(text)
 
-        # Creating context for entire text sample
-        if self.context_policy == 'summary' or self.context_policy == 'summary-and-previous-sentence':
-            summary = summarize(parsed.text)
-            summary_context = summary
 
         running_sent_num = 0
         tag = None
@@ -79,21 +72,6 @@ class PrepareSentenceContext(object):
                     else:
                         context = previous
                     previous = sent_text
-                elif self.context_policy == 'summary':
-                    if self.context:
-                        context = self.context + ' ' + summary_context
-                    else:
-                        context = summary_context
-
-                elif self.context_policy == 'summary-and-previous-sentence':
-                    if previous is not None:
-                        if self.context:
-                            context = self.context + ' ' + summary_context + ' ' + previous
-                        else:
-                            context = summary_context + ' ' + previous
-                    else:
-                        context = summary_context
-                    previous = sent_text
                 elif self.context_policy == 'previous-3-sentences':
                     if i==0:
                         context = self.context
@@ -114,23 +92,11 @@ class PrepareSentenceContext(object):
                             else:
                                 context = " ".join(previous_3)
                             previous = sent_text
-                elif self.context_policy == "QA":
-                    question = gen_question(sent_text)
-                    if self.context:
-                        context = self.context + ' ' + question
-                    else:
-                        context = question
                 else:
                     context = self.context
 
                 contexts.append(context)
 
-
-        # #### to delete
-        # log = {'text': texts, 'length': lengths, 'context': contexts, 'tag': tags,
-        #          'number_in_par': num_in_par}
-        # print(f"parse sentence returns: {log}")
-        # #### to delete
 
         return {'text': texts, 'length': lengths, 'context': contexts, 'tag': tags,
                 'number_in_par': num_in_par}
