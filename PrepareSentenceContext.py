@@ -35,6 +35,9 @@ class PrepareSentenceContext(object):
         previous_3 = []
 
         text = re.sub("(</?[a-zA-Z0-9 ]+>)\s+", r"\1. ", text)  # to make sure that tags are in separate sentences
+        text = re.sub(r'<ref.*?>.*?</ref>', ' ', text)          # Remove <ref> tags and their content
+        text = re.sub(r'{{.*?}}', ' ', text)                    # Remove {{...}} templates
+        text = re.sub(r'\s+', ' ', text)                        # Replace multiple spaces with a single space
         parsed = self.nlp(text)
 
 
