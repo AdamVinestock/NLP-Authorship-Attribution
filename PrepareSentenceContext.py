@@ -31,7 +31,7 @@ class PrepareSentenceContext(object):
         lengths = []
         tags = []
         num_in_par = []
-        previous = None
+        previous = ""
         previous_3 = []
 
         text = re.sub("(</?[a-zA-Z0-9 ]+>)\s+", r"\1. ", text)  # to make sure that tags are in separate sentences
@@ -60,10 +60,11 @@ class PrepareSentenceContext(object):
                         tag = all_tags[0]
             else:  # if text is not a tag
                 running_sent_num += 1
+                sent_text = str(sent)
                 num_in_par.append(running_sent_num)
                 tags.append(tag)
-                lengths.append(len(sent))
-                sent_text = str(sent)
+                # lengths.append(len(sent))
+                lengths.append(len(sent_text.split()))
                 texts.append(sent_text)
 
                 if self.context_policy == 'previous-sentence':
