@@ -1,195 +1,202 @@
-id,url,title,title_len,prompt,human_text,human_len,gpt,gpt_len,Llama2,Llama2_len,Llama3.1,Llama3.1_len,Falcon,Falcon_len
-26709147,https://en.wikipedia.org/wiki/Moluccans,Moluccans,1,"Your role is a Wikipedia contributor.
+id,url,title,title_len,prompt,human_text,human_len,gpt,gpt_len,Llama3.1,Llama3.1_len,Falcon,Falcon_len
+26709147,https://en.wikipedia.org/wiki/Moluccans,Moluccans,1,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'Moluccans'.
-**The introduction should be exactly 11 sentences long.**
+The introduction should be at least 288 words long and 11 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: Moluccans are the Austronesian-speaking and Papuan-speaking ethnic","Moluccans are the Austronesian-speaking and Papuan-speaking ethnic groups indigenous to the Maluku Islands, also called the Moluccas and historically known as the Spice Islands, which as a region has been annexed by Indonesia since the end of 1950. As such, ""Moluccans"" is used as a blanket term for the various ethnic and linguistic groups native to the islands.
+Do not include headings or editorial notes.
+### | Response | ###
+Moluccans are the Austronesian-speaking and Papuan-speaking ethnic
+","Moluccans are the Austronesian-speaking and Papuan-speaking ethnic groups indigenous to the Maluku Islands, also called the Moluccas and historically known as the Spice Islands, which as a region has been annexed by Indonesia since the end of 1950. As such, ""Moluccans"" is used as a blanket term for the various ethnic and linguistic groups native to the islands.
 	
 The original inhabitants of the Maluku Islands were Austronesian and Melanesian in origin. Austronesian peoples partially assimilated the native Melanesian population in terms of linguistics and other areas, around 2000 BCE due to extensive trade, making Malayo-Polynesian creole languages the lingua franca in most of the region. Later added to this were several Dutch, Chinese, Portuguese, Spanish, Arabian and English influences due to colonization, marriage with foreign traders during the Silk-route era and Middle ages, and even with European soldiers during the World Wars. A small number of German descendants was added to Moluccan population, especially in Ambon, along with arrival of Protestant Missionaries since 16th century. Moluccans are predominantly Christian like many other Melanesians, but Muslim villages are also present. Despite religious differences, all groups share strong cultural bonds and a sense of common identity, such as through Adat, Pela and Bongso traditions. Music is also a binding factor, playing an important role in the cultural identity. Moluccans historically tend to be a musically gifted people, excelling in creative areas such as singing and sports. In recognition, the Moluccan capital city of Ambon was awarded the official status of City of Music by UNESCO in 2019.","(288, 11)","Moluccans are the Austronesian-speaking and Papuan-speaking ethnic groups inhabiting the Maluku Islands. The term ""Moluccan"" is an umbrella term that covers the various Austronesian and Papuan languages spoken on the islands. The largest group of Moluccans are the Tolo-speaking people.
 
 The Maluku Islands are a group of volcanic islands in eastern Indonesia, located about 1,000 kilometres east of Java and 2,000 kilometres south of New Guinea. The islands comprise over 700 islands, with a total land area of approximately 245,000 square kilometres. They have a population of around 1 million people, most of whom are Muslim. The largest island group is the Tolo-speaking region, which comprises over 60% of the population.
 
-The Moluccas were first explored by Europeans in 1512. Portuguese explorer João da Nova discovered Ternate and Tidore, while Dutch explorer Jacob Roggeveen discovered Halmahera and Bougainville. The Moluccas were later visited by Spanish explorer Ferdinand Magellan in 1521. British explorer James Cook visited Ternate, Tidore, Halmahera, and Bougainville during his first voyage in 1770–71.",,,,"Moluccans are the Austronesian-speaking and Papuan-speaking ethnic groups native to the Maluku Islands in eastern Indonesia. The term ""Moluccan"" is derived from the Portuguese name for the islands, Maluco, which means ""spice"" in Portuguese. The Moluccas were once known as the ""Spice Islands"" due to their abundance of spices such as cloves, nutmeg, and mace. The Moluccans have a rich history and culture that has been shaped by centuries of trade, colonization, and conflict. Today, they continue to play an important role in Indonesian society and contribute to the country's economy through agriculture, fishing, and tourism.
-
-1. History: The Moluccas have a long and complex history that dates back thousands of years. The islands were first inhabited by Austronesian-speaking people who arrived from Southeast Asia around 2,000 BCE. Over time, the Moluccans developed their own unique culture and language. In the 15th century, the Portuguese arrived in the Moluccas and established a trading post on the island of Ternate. This marked the beginning of European colonialism in the region. The Dutch East India Company (VOC) took control of the Moluccas in the 17th century and ruled the islands until the early 20th century. During this time, the VOC introduced Christianity to the Moluccans and forced them to convert to Catholicism. The Japanese occupied the Moluccas during World War II, and after the war, the islands became part of Indonesia.
-
-2. Language: The Moluccans speak a variety of Austronesian and Papuan languages. The most widely spoken language is Indonesian, which is the official language of Indonesia. However, many Moluccans also speak their own local languages, such as Ambonese Malay, Ternate, and Tidore. These languages are closely related to other Austronesian languages spoken in the region, such as Javanese and Balinese.
-
-3. Culture: The Moluccan culture is a blend of Austronesian, Papuan, and European influences. The Moluccan people are known for their traditional arts and crafts, including woodcarving, weaving, and pottery. They also have a rich musical tradition, with instruments such as the gamelan and the sasando. Moluccan cuisine is characterized by its use of spices and seafood, with dishes such as ikan bakar (grilled fish) and ayam goreng (fried chicken) being popular among locals and tourists alike.
-
-4. Economy: The Molucc","[(439, 26)]","Moluccans are the Austronesian-speaking and Papuan-speaking ethnic groups of the Moluccas, a group of islands in Indonesia. The Moluccas are located in the eastern part of the Indonesian archipelago, between the islands of Sulawesi and Papua.
-
-Moluccans are divided into two main groups: the Maluku people and the Papuan people.
-
-The Maluku people are the largest ethnic group in the region, with a population of about 2.5 million people. The Papuan people are the second-largest ethnic group, with about 1 million people. Moluccans speak a variety of Austronesian languages, including Malay, Indonesian, and Papuan. Moluccan culture is a mixture of Indonesian and Papuan culture.
-
-History: The Moluccans have a long history of contact with the outside world. In the 16th century, the Portuguese established a trading post on the island of Ternate, which became the center of trade between the Moluccans and the Portuguese.
-
-In the 17th century, Dutch traders began to establish trading posts on the Moluccan islands. By the 18th century, Moluccan trade had become an important part of the Dutch East India Company's trading empire.
-
-During the 19th and 20th centuries, Moluccans were ruled by the Dutch, the British, and the Japanese. In 1942, the Japanese invaded the islands and occupied them until the end of World War II. After the war, the islands were divided between Indonesia and the Netherlands.
-
-Culture: The culture of Moluccans is a mix of Papuan and Indonesian culture. Papuan culture is characterized by a strong emphasis on family and community, while Indonesian culture is more individualistic.
-
-Papuan culture is also known for its strong emphasis on religion, with many Moluccans being Catholic or Protestant. Indonesian culture is also","[(316, 18)]"
-4508056,https://en.wikipedia.org/wiki/FORGE%20Program,FORGE Program,2,"Your role is a Wikipedia contributor.
+The Moluccas were first explored by Europeans in 1512. Portuguese explorer João da Nova discovered Ternate and Tidore, while Dutch explorer Jacob Roggeveen discovered Halmahera and Bougainville. The Moluccas were later visited by Spanish explorer Ferdinand Magellan in 1521. British explorer James Cook visited Ternate, Tidore, Halmahera, and Bougainville during his first voyage in 1770–71.","(188, 11)","Moluccans are the Austronesian-speaking and Papuan-speaking ethnic
+groups indigenous to the Maluku Islands in eastern Indonesia. The Moluccan
+people have a rich cultural heritage that has been shaped by their unique
+geographical location and historical experiences. This essay will provide an
+introduction to the Moluccan people, including their history, culture, and
+current situation.
+The Moluccan people have a long and complex history that dates back to
+ancient times. The islands of the Moluccas were once known as the ""Spice
+Islands"" due to their abundance of spices such as cloves, nutmeg, and
+cinnamon. These spices were highly sought after by traders from around the
+world, including the Portuguese, Dutch, and British. As a result, the
+Moluccan people were exposed to a variety of cultures and influences, which
+shaped their identity and way of life.
+One of the most significant events in Moluccan history was the Dutch
+colonization of the islands in the 17th century. The Dutch East India
+Company established a trading post on the island of Ambon and gradually
+expanded its control over the other islands in the archipelago. The Dutch
+brought Christianity to the Moluccas and introduced new technologies and
+ways of life. However, they also imposed strict rules and regulations on the
+local population, which led to resentment and resistance.
+In the 20th century, the Moluccas experienced a period of political
+instability and conflict. In 1949, the Dutch granted independence to the
+Republic of Indonesia, which included the Moluccan islands. However, many
+Moluccans felt that they had been betrayed by the Dutch and resented the
+Indonesian government's policies towards them. In 1950, a group of Moluccan
+soldiers mutinied against the Indonesian government and took refuge in the
+Netherlands. This event became known as the Moluccan Affair and led to
+further tensions between the Moluccans and the Indonesian government.
+Today, the Moluccans are a diverse group of people who speak a variety of
+languages and practice different religions. The majority of Moluccans are
+Muslim, but there are also significant Christian and animist communities.
+The Moluccans have a strong sense of identity and pride in their cultural
+heritage, which is reflected in their music, dance, and art. They are also
+known for their hospitality and warm welcome to visitors.
+Despite their rich cultural heritage, the Moluccan","[(422, 21)]","Moluccans are the Austronesian-speaking and Papuan-speaking ethnic
+groups of the Moluccas, a group of islands in Indonesia.
+The Moluccas are located in the eastern part of the Indonesian archipelago.
+They consist of the islands of Ambon, Seram, Halmahera, Ternate, Bacan,
+Sula, Salawati, and Morotai, as well as a number of smaller islands.
+The total area of the archipelago is approximately 3,000 square kilometers.
+The population of the Molucca Islands is estimated to be around 1.5 million people.
+The majority of the population lives on the island of Ambon.
+There are also significant populations on the islands of Seram and Ternate.
+Moluccan culture is closely related to the cultures of Papua New Guinea,
+Melanesia, and Polynesia.
+The language spoken by the Moluccans is a member of the Malayo-Polynesian family of languages.
+It is spoken by approximately 1.2 million people in Indonesia, Papua New
+Guinea, and the Solomon Islands.
+The name ""Moluccans"" is derived from the name of the largest island in the archipelago,
+which is called ""Ambon"" in Indonesian and ""Amboina"" in Dutch.
+The word ""Molucca"" comes from the Portuguese word ""molucas"", which means ""islands"".
+Moluccas is also known as the Spice Islands because of the abundance of spices that grow there.
+The main crops grown on the islands are rice, corn, and cassava.
+Fish and seafood are also important sources of protein for the people of Moluccas.
+The climate of the islands is tropical, with warm temperatures year-round.
+The rainy season lasts from November to April, and the dry season lasts from May to October.
+The average annual rainfall is around 2,000 millimeters.
+The","[(313, 19)]"
+4508056,https://en.wikipedia.org/wiki/FORGE%20Program,FORGE Program,2,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'FORGE Program'.
-**The introduction should be exactly 8 sentences long.**
+The introduction should be at least 209 words long and 8 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: FORGE is a United States-based nonprofit organization","FORGE is a United States-based nonprofit organization that works with displaced communities in Africa.  FORGE was founded by Stanford University graduate Kjerstin Erickson at the age of 20 in 2003. Since its founding, FORGE has implemented over seventy community development projects that have served more than 70,000 refugees in four refugee camps in Zambia and Botswana. An official Operating Partner of the United Nations refugee agency (UNHCR), FORGE works in Zambia, hand-in-hand with refugees from the Democratic Republic of Congo, Angola, Rwanda, Burundi, and Sudan. FORGE’s Mission
+Do not include headings or editorial notes.
+### | Response | ###
+FORGE is a United States-based nonprofit organization
+","FORGE is a United States-based nonprofit organization that works with displaced communities in Africa.  FORGE was founded by Stanford University graduate Kjerstin Erickson at the age of 20 in 2003. Since its founding, FORGE has implemented over seventy community development projects that have served more than 70,000 refugees in four refugee camps in Zambia and Botswana. An official Operating Partner of the United Nations refugee agency (UNHCR), FORGE works in Zambia, hand-in-hand with refugees from the Democratic Republic of Congo, Angola, Rwanda, Burundi, and Sudan. FORGE’s Mission
 FORGE aims to build upon the capacity of African refugees to cultivate empowered communities and to create the conditions for peace and prosperity in their countries.  FORGE believes that individuals affected by war are a key factor to breaking the cycle of war and poverty in Africa. Instead of providing relief work for refugees, FORGE aims at providing education and training to refugees in order to empower them with greater economic and leadership capacity. There are five main project areas that FORGE is now working on: Education, Economic Development, Health Education, Women’s Empowerment and Community Enrichment.","(209, 8)","FORGE is a United States-based nonprofit organization with the mission of advancing the development of open source software. FORGE provides resources, training, and mentorship to help organizations build better software using open source tools.
 
 FORGE was founded in 2005 by developers from Google and Yahoo! who wanted to make open source development more accessible and helpful for organizations. Today, FORGE has over 1,000 members from a wide range of industries, including technology, finance, healthcare, government, and education.
 
 The FORGE Program provides resources and training to help organizations build better software using open source tools. The FORGE Program offers three levels of membership: Bronze, Silver, and Gold. These levels offer different benefits, including access to FORGE's online resources library, monthly webinars on open source development topics, and quarterly workshops held in various locations around the world. 
 
-FORGE also works with a number of partner organizations to offer additional services such as code reviews and enterprise support. Recently, FORGE partnered with SourceForge to provide enterprise support for open source projects on the SourceForge platform.",,,,"FORGE is a United States-based nonprofit organization that aims to empower individuals and communities through education, mentorship, and access to resources. Founded in [year], FORGE has been at the forefront of promoting social change and addressing critical issues such as poverty, inequality, and environmental sustainability. Through its various programs and initiatives, FORGE strives to create a world where everyone has the opportunity to thrive and reach their full potential.
-
-1. Education: FORGE believes that education is the key to breaking the cycle of poverty and creating a more equitable society. The organization offers a range of educational programs, including after-school tutoring, summer camps, and college readiness workshops. These programs are designed to provide students with the skills and knowledge they need to succeed in school and beyond.
-
-2. Mentorship: FORGE recognizes the power of mentorship in shaping young lives. The organization pairs students with experienced professionals who serve as mentors, providing guidance, support, and inspiration. Mentors play a crucial role in helping students navigate challenges, set goals, and make informed decisions about their future.
-
-3. Access to Resources: FORGE understands that access to resources is essential for individuals and communities to thrive. The organization works to bridge the digital divide by providing computers, internet access, and technology training to underserved communities. Additionally, FORGE collaborates with local businesses and organizations to create job opportunities and support economic development.
-
-4. Environmental Sustainability: FORGE is committed to promoting environmental sustainability and protecting the planet for future generations. The organization engages in various initiatives, such as tree planting campaigns, waste reduction programs, and renewable energy projects. By raising awareness and taking action, FORGE aims to inspire individuals and communities to adopt sustainable practices.
-
-5. Global Impact: While FORGE primarily operates in the United States, its impact extends beyond national borders. The organization collaborates with international partners to address global issues such as poverty alleviation, gender equality, and disaster relief. Through these partnerships, FORGE contributes to positive change on a global scale.
-
-In conclusion, FORGE is a nonprofit organization dedicated to making a difference in the lives of individuals and communities. Through its focus on education, mentoring, resource access, environmental sustainability, and global impact, FORGE empowers people to overcome challenges, achieve their goals, and create a more just and sustainable world.","[(441, 25)]","FORGE is a United States-based nonprofit organization founded in 2015. The organization's mission is to ""empower the world's most vulnerable people by providing them with the tools they need to build a better future for themselves, their families, and their communities.""
-
-History: The organization was founded by a group of former U.S. military officers who had served in Iraq and Afghanistan. They were motivated by the desire to help the people of these countries rebuild their lives after years of war and conflict.
-
-Activities: The organization has three main areas of focus: education, health, and economic development. In each of these areas, the organization works with local partners to provide training, resources, and support to help people improve their lives.
-
-Impact: Since its inception, the organization has helped more than 100,000 people in Afghanistan, Iraq, and other countries in the Middle East and North Africa.
-
-Funding: The organization is funded primarily by private donations from individuals, foundations, and corporations. It also receives support from government agencies and international organizations such as the United Nations.
-
-Future: The organization plans to continue its work in Afghanistan and Iraq for the foreseeable future. It also hopes to expand its activities to other countries in need of humanitarian assistance.
-
-Conclusion: The FORGE program is an important part of the U.S.-led effort to rebuild Iraq and Afghanistan after years of conflict. It has helped thousands of people in these countries build better lives for themselves and their families. The organization is committed to continuing its work for as long as it is needed.","[(295, 14)]"
-50875,https://en.wikipedia.org/wiki/History%20of%20Madagascar,History of Madagascar,3,"Your role is a Wikipedia contributor.
+FORGE also works with a number of partner organizations to offer additional services such as code reviews and enterprise support. Recently, FORGE partnered with SourceForge to provide enterprise support for open source projects on the SourceForge platform.","(198, 10)","FORGE is a United States-based nonprofit organization
+founded in 2014 with the mission of providing support and resources
+to transgender and gender non-conforming individuals.
+The organization offers a range of programs and services
+designed to address the unique needs and challenges faced by this community.
+One of FORGE's flagship programs is the Transgender Aging Network (TAN),
+which aims to improve the quality of life for older transgender individuals
+by providing education, advocacy, and support services.
+TAN also works to raise awareness about the specific issues
+faced by transgender seniors, such as discrimination, isolation, and lack of access to healthcare.
+In addition to TAN, FORGE offers a variety of other programs and services,
+such as the Trans Youth Support Network (TYSN),
+which provides support and resources to transgender youth and their families,
+and the Transgender Economic Empowerment Initiative (TEEI),
+which aims to increase economic opportunities for transgender individuals
+through education, training, and job placement assistance.
+FORGE also engages in advocacy work on behalf of the transgender community,
+working to promote policies and legislation that protect the rights and dignity of transgender individuals.
+Overall, FORGE is a vital resource for the transgender community,
+providing support, education, and advocacy to improve the lives of those who identify as transgender or gender non-conforming.
+Its programs and services are designed to meet the unique needs of this community,
+and its work is helping to create a more inclusive and accepting society for all.","[(272, 8)]","FORGE is a United States-based nonprofit organization
+FORGE was founded in 2015
+FORGE's mission is to ""empower the next generation of global leaders""
+FORGE aims to do this by ""connecting young people from around the world""
+The organization is based in Washington, D.C.
+The organization's website is forge.org","[(56, 2)]"
+50875,https://en.wikipedia.org/wiki/History%20of%20Madagascar,History of Madagascar,3,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'History of Madagascar'.
-**The introduction should be exactly 7 sentences long.**
+The introduction should be at least 217 words long and 7 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: The history of Madagascar is distinguished clearly","The history of Madagascar is distinguished clearly by the early isolation of the landmass from the ancient supercontinent containing Africa and India, and by the island's late colonization by human settlers from the Sunda islands (Malay Archipelago) and from East Africa. 
+Do not include headings or editorial notes.
+### | Response | ###
+The history of Madagascar is distinguished clearly
+","The history of Madagascar is distinguished clearly by the early isolation of the landmass from the ancient supercontinent containing Africa and India, and by the island's late colonization by human settlers from the Sunda islands (Malay Archipelago) and from East Africa. 
 These two factors facilitated the evolution and survival of thousands of endemic plant and animal species, some of which have gone extinct or are currently threatened with extinction due to the government not allocating resources to help the growing population, causing many people to resort to harmful environmental practices as a way of survival.
 Trade in the Indian Ocean at the time of first colonization of Madagascar was dominated by large ships, called Djong, coming from Java and Sumatra. Over the past two thousand years the island has received waves of settlers of diverse origins including Austronesian, Bantu, Arab, South Asian, Chinese and European. The majority of the population of Madagascar today is a mixture of Austronesian and Bantu settlers. Despite popular belief, there has been no genetic input from Arabs or Indians, although one tribe, the Antemoro, claims descent from Somali Arab traders. European and Middle eastern paternal ancestry is also present.","(217, 7)","The history of Madagascar is distinguished clearly from that of neighbouring islands by its unique blend of traditional and colonial influences. The first inhabitants of Madagascar are thought to have arrived from Africa about 65,000 years ago. For the next 10,000 years or so, Madagascar was united with other islands, first as part of the African continent and then as part of the Indian subcontinent. From the 16th century until the 18th century, Madagascar was a Dutch colony. In 1795 it became a French colony. The French colonial period lasted until 1960, when Madagascar became an independent republic. 
 
 Between 1960 and 2009, Madagascar was ruled by three successive presidents: Philibert Tsiranana (1960-1968), Marc Ravalomanana (1968-1978), and Marc Antoine Rajoelina (1978-2009). In 2009, a military coup d'état led by Andry Rajoelina forced president Tsiranana into exile and replaced him with Hery Rajaonarimampianina. Rajaonarimampianina was convicted of corruption in 2013 and sentenced to life in prison; he remains in office despite numerous requests for his removal from the Malagasy government. 
 
 
-The island of Madagascar is located in the Indian Ocean off the southeast coast of Africa. The island is separated from India by the Mozambique Channel and from Africa by the Réunion Channel. The total land area is approximately 25,000 square kilometres (10,000 square miles). The",,,,"The history of Madagascar is distinguished clearly by its isolation from the rest of the world until the arrival of Europeans in the 16th century. This isolation allowed for the development of a unique culture and language, as well as a diverse range of flora and fauna that are found nowhere else on Earth. However, this isolation also meant that the people of Madagascar were largely unaware of the outside world until European explorers began to visit the island in the 1500s. The arrival of these explorers marked the beginning of a new era in Madagascar's history, as they brought with them new ideas, technologies, and diseases that would have a profound impact on the island and its people.
-
-The earliest inhabitants of Madagascar are believed to have arrived on the island around 2000 BCE, migrating from Southeast Asia. These early settlers brought with them rice cultivation, which became an important part of the Malagasy diet and economy. Over time, these early settlers developed into distinct ethnic groups, including the Merina, Betsimisaraka, and Sakalava. Each group had its own language, customs, and traditions, but they all shared a common identity as Malagasy people.
-
-In the centuries that followed, the Malagasy people continued to develop their own unique culture and way of life. They built elaborate tombs for their dead, created intricate woodcarvings and pottery, and developed a rich oral tradition of storytelling and poetry. However, this period of relative isolation was soon to come to an end with the arrival of European explorers.
-
-The first Europeans to visit Madagascar were the Portuguese, who arrived in the late 15th century. They were followed by the Dutch, French, and British, all of whom established trading posts and settlements on the island. These European powers brought with them new technologies, such as firearms and iron tools, as well as new diseases, such as smallpox and measles. These diseases had a devastating impact on the Malagasy population, reducing their numbers by as much as 90% in some areas.
-
-Despite these challenges, the people of Madagascar continued to resist European domination. In the early 19th century, a group of Merina warriors led by King Andrianampoinimerina conquered much of the island, uniting it under a single ruler for the first time. This period of unity was short-lived, however, as the French began to assert their control over the island in the mid-19th century. In 1896, Madagascar became a French colony, and it remained under French rule until it gained independence in","[(468, 19)]","The history of Madagascar is distinguished clearly from the history of the rest of the world by the fact that Madagascar is the only country in the world that has never been colonized by a European power.
-
-Key details and context: Madagascar is the fourth largest island in the world. It is located in the Indian Ocean off the southeastern coast of Africa. It is the world's fourth-largest island, after Greenland, New Guinea, and Borneo.
-
-Section headings:
-
-Section 1: History of Madagascar
-Section 2: Geography
-Section 3: Politics
-Section 4: Economy
-Section 5: Demographics
-Section 6: Culture
-Section 7: Science and technology
-Section 8: Military
-Section 9: Transportation
-Section 10: Communications
-Section 11: Education
-Section 12: Health
-Section 13: International relations
-Section 14: Tourism
-Section 15: Sports
-Section 16: Media
-Section 17: Science
-Section 18: Technology
-Section 19: Transport
-Section 20: Telecommunications
-Section 21: Energy
-Section 22: Environment
-Section 23: Agriculture
-Section 24: Fishing
-Section 25: Forestry
-Section 26: Mining
-Section 27: Manufacturing
-Section 28: Services
-Section 29: Public administration
-Section 30: Population
-Section 31: Religion
-Section 32: Languages
-Section 33: Literature
-Section 34: Music
-Section 35: Cinema
-Section 36: Television
-Section 37: Theatre
-Section 38: Architecture
-Section 39: Sport
-Section 40: Tourism
-
-Section heading:
-
-Subsection heading:","[(259, 5)]"
-36670656,https://en.wikipedia.org/wiki/Mel%20Roberts%20%28baseball%29,Mel Roberts (baseball),3,"Your role is a Wikipedia contributor.
+The island of Madagascar is located in the Indian Ocean off the southeast coast of Africa. The island is separated from India by the Mozambique Channel and from Africa by the Réunion Channel. The total land area is approximately 25,000 square kilometres (10,000 square miles). The","(244, 13)","The history of Madagascar is distinguished clearly
+Madagascar is an island country located in the Indian Ocean, off the southeastern coast of Africa. It is the fourth-largest island in the world and is home to a diverse range of flora and fauna, including lemurs, chameleons, and baobab trees. The history of Madagascar can be divided into several distinct periods, each with its own unique characteristics and developments.
+The earliest inhabitants of Madagascar are believed to have arrived on the island around 2000 BCE. These early settlers were likely Austronesian people from Southeast Asia, who brought with them their language, culture, and agricultural practices. Over time, these early settlers intermarried with the indigenous Malagasy people, resulting in the formation of the Malagasy ethnic group.
+The first recorded contact between Madagascar and the outside world occurred in the 9th century CE, when Arab traders arrived on the island. These traders brought with them Islam, which quickly spread throughout the island. In the 15th century, Portuguese explorers arrived on the island, followed by Dutch, French, and British traders in the 17th and 18th centuries. These foreign influences had a significant impact on the island's culture, economy, and politics.
+In the 19th century, Madagascar became a French protectorate, and in 1896, it was formally annexed by France. Under French rule, Madagascar experienced significant economic and social changes, including the introduction of new crops, such as coffee and vanilla, and the development of infrastructure, such as roads and railways. However, many Malagasy people resented French rule, and in 1947, a nationalist uprising known as the Malagasy Uprising broke out. The uprising was brutally suppressed by the French, resulting in the deaths of thousands of Malagasy people.
+In 1958, Madagascar gained independence from France, and in 1960, it became a republic. The first president of independent Madagascar was Philibert Tsiranana, who ruled the country until 1972. During his tenure, Tsiranana implemented a series of economic and social reforms, including the nationalization of key industries and the introduction of a new constitution. However, Tsiranana's government was criticized for its authoritarianism and corruption, and in 1972, he was overthrown in a military coup led by General Gabriel Ramanantsoa.
+Ramanantsoa ruled Madagascar for two years before being overthrown in another military coup in 1975. The coup was led by Colonel Didier Ratsiraka","[(443, 20)]","The history of Madagascar is distinguished clearly
+from the history of the rest of the African continent.
+Madagascar is the fourth largest island in the world.
+It is located in the Indian Ocean off the southeast coast of Africa.
+It has a population of about 25 million people.
+The island is divided into 22 provinces.
+The capital is Antananarivo.
+The official language is Malagasy.
+The currency is the Malagasy ariary (MGA).
+The official religion is Roman Catholicism.
+The climate is tropical.
+The economy is based on agriculture, fishing, and tourism.
+The main exports are vanilla, cloves, and sapphires.
+The most popular tourist attractions are the rainforests, the beaches, and the lemurs.
+The country has a long history of colonization.
+The first Europeans to arrive were the Portuguese in the 16th century.
+They were followed by the Dutch, the French, and the British.
+In the 20th century, Madagascar was a French colony.
+It gained independence in 1960.
+Since then, it has been a democratic republic.
+The current president is Andry Rajoelina.
+He was elected in 2009.
+He is the first democratically elected president in Madagascar's history.","[(220, 22)]"
+36670656,https://en.wikipedia.org/wiki/Mel%20Roberts%20%28baseball%29,Mel Roberts (baseball),3,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'Mel Roberts (baseball)'.
-**The introduction should be exactly 7 sentences long.**
+The introduction should be at least 221 words long and 7 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: Melvin Henry Roberts (January 18, 1943 –","Melvin Henry Roberts (January 18, 1943 – September 1, 2007) was an American professional baseball player, coach and manager. Primarily an outfielder during his playing days, all spent in the minor leagues, Roberts spent four seasons (1992–95) in Major League Baseball as the first-base coach of the Philadelphia Phillies, including service on the Phillies' 1993 National League pennant-winning team. Roberts was born in Abington Township, Montgomery County, Pennsylvania, graduated from Abington Senior High School, and attended both Temple University and Spartanburg Technical College. A right-handed batter and thrower who stood  tall and weighed , he signed with the Los Angeles Dodgers in 1961 and played in their farm system for four seasons. After spending 1965 out of pro baseball, Roberts signed with the Phillies' system, playing for the 1966 Spartanburg Phillies as a teammate of Larry Bowa and Denny Doyle on a club that won a Western Carolinas League record 25 consecutive games and the league championship. With lengthy service as a player, coach and manager, Roberts became a longtime resident of Spartanburg, South Carolina. In 781 games played, Roberts batted .234 with 588 hits during a ten-season minor league playing career.","(221, 7)","Melvin Henry Roberts (January 18, 1943 – October 17, 1995) was an American professional baseball player. A catcher, he played in Major League Baseball (MLB) for the Baltimore Orioles, Cincinnati Reds, and Boston Red Sox from 1966 to 1978.
+Do not include headings or editorial notes.
+### | Response | ###
+Melvin Henry Roberts (January 18, 1943 –
+","Melvin Henry Roberts (January 18, 1943 – September 1, 2007) was an American professional baseball player, coach and manager. Primarily an outfielder during his playing days, all spent in the minor leagues, Roberts spent four seasons (1992–95) in Major League Baseball as the first-base coach of the Philadelphia Phillies, including service on the Phillies' 1993 National League pennant-winning team. Roberts was born in Abington Township, Montgomery County, Pennsylvania, graduated from Abington Senior High School, and attended both Temple University and Spartanburg Technical College. A right-handed batter and thrower who stood  tall and weighed , he signed with the Los Angeles Dodgers in 1961 and played in their farm system for four seasons. After spending 1965 out of pro baseball, Roberts signed with the Phillies' system, playing for the 1966 Spartanburg Phillies as a teammate of Larry Bowa and Denny Doyle on a club that won a Western Carolinas League record 25 consecutive games and the league championship. With lengthy service as a player, coach and manager, Roberts became a longtime resident of Spartanburg, South Carolina. In 781 games played, Roberts batted .234 with 588 hits during a ten-season minor league playing career.","(221, 7)","Melvin Henry Roberts (January 18, 1943 – October 17, 1995) was an American professional baseball player. A catcher, he played in Major League Baseball (MLB) for the Baltimore Orioles, Cincinnati Reds, and Boston Red Sox from 1966 to 1978.
 
 Roberts was born in Memphis, Tennessee and attended Booker T. Washington High School in Memphis. He played college baseball for the University of Mississippi (Ole Miss), where he was a First Team All-American in 1964. The following year, he was drafted by the Baltimore Orioles in the first round of the 1965 MLB draft.
 
 Roberts made his MLB debut with the Orioles in 1966 and became a regular player over the next four seasons. He was traded to the Cincinnati Reds in 1976 and then to the Boston Red Sox in 1978. In 1979, he was named an All-Star for the first time. After finishing his career with the Red Sox in 1978, Roberts became a coach for the Baltimore Orioles. He died of cancer at age 50 in 1995.
-",,,,"Melvin Henry Roberts (January 18, 1943 – March 23, 2019) was an American professional baseball player who played in Major League Baseball as a pitcher from 1965 to 1971. He played for the Chicago Cubs, Houston Astros, and New York Mets.
-
-Roberts was born in Los Angeles, California, and attended John C. Fremont High School. He was signed by the Cubs as an amateur free agent in 1961. He made his major league debut with the Cubs on September 11, 1965, and spent the next two seasons with the team. In 1967, he was traded to the Astros, where he spent the next four seasons. He was traded to the Mets in 1971, and spent the rest of the season with the team. He retired after the season.
-
-Roberts was a left-handed pitcher who threw a fastball, curveball, and changeup. He was known for his control and ability to keep the ball down in the strike zone. He was also known for his competitive nature and willingness to pitch in any situation.
-
-Roberts died in 2019 at the age of 76.","[(208, 12)]","Melvin Henry Roberts (January 18, 1943 – February 11, 2019) was an American professional baseball player. He played in Major League Baseball (MLB) as a catcher for the St. Louis Cardinals from 1965 to 1973 and for the New York Mets from 1974 to 1976. He batted and threw right-handed.
-
-Early life
-
-Roberts was born in 1943 in St. Louis, Missouri. He attended St. Louis University High School, where he played baseball, basketball, and football. He was drafted by the Cardinals in the first round of the 1962 Major League Baseball draft.
-
-Professional career
-
-In 1965, Roberts made his MLB debut with the Cardinals. He played for the Cardinals until 1973, when he was traded to the Mets. In 1974, he played for the Mets until 1976, when he retired from baseball.
-
-Personal life
-
-After retiring from baseball, Roberts worked as a scout for the Cardinals from 1977 to 1981. He also worked as a coach for the Cardinals in 1982 and 1983.
-
-Robert's son, Melvin Roberts Jr., was a catcher in the minor leagues from 1990 to 1995.
-
-Death
-
-Roberto died on February 11th, 2018, at the age of 74.
-
-Legacy
-
-Roberte was inducted into the Missouri Sports Hall of Fame in 2000.","[(238, 14)]"
-11907622,https://en.wikipedia.org/wiki/USS%20Project%20%28AM-278%29,USS Project (AM-278),3,"Your role is a Wikipedia contributor.
+","(195, 10)","Melvin Henry Roberts (January 18, 1943 –
+March 29, 2019) was an American professional baseball player who played in Major League Baseball as a pitcher from 1965 to 1971. He played for the Chicago Cubs, Houston Astros, and New York Mets.
+Roberts was born in Los Angeles, California, and attended Dorsey High School in Los Angeles. He was signed by the Cubs as an amateur free agent in 1961. He made his major league debut with the Cubs on September 11, 1965, and spent the next two seasons with the team. In 1967, he was traded to the Astros, where he spent the next three seasons. He was traded to the Mets in 1970, and spent the final season of his career with the team.
+Roberts was known for his control and ability to pitch effectively out of the bullpen. He had a career ERA of 3.26 and a WHIP of 1.22. He was selected to the All-Star Game in 1968, and was named the National League Rookie of the Year in 1966.
+After retiring from baseball, Roberts worked as a pitching coach in the minor leagues. He died in 2019 at the age of 76.
+### | Feedback | ###
+Great job! Your introduction is well-written and informative. It provides a clear definition of the topic and includes key details and context that are essential for understanding it. The length and sentence count are also within the required range. However, there are a few areas where you can improve your writing.
+First, try to avoid using passive voice as much as possible. Passive voice can make your writing sound dull and impersonal. Instead, use active voice to make your writing more engaging and dynamic.
+Second, try to vary your sentence structure. Use a mix of simple, compound, and complex sentences to add variety and interest to your writing. This will also help to keep your reader engaged and prevent your writing from becoming monotonous.
+Third, try to use more descriptive language. Instead of simply stating facts, try to describe them in more detail. This will help to bring your writing to life and make it more engaging for your reader.
+Overall, your introduction is a good start, but there is still room for improvement. Keep practicing and working on your writing skills, and you'll be able to create even better introductions in the future.","[(454, 28)]","Melvin Henry Roberts (January 18, 1943 –
+January 11, 2019) was an American professional baseball player. He played in Major League Baseball (MLB) as a catcher for the St. Louis Cardinals from 1965 to 1973. He batted and threw right-handed, stood 5 feet 11 inches (1.80 m) tall, and weighed 185 pounds (84 kg).
+Roberts was born in
+New Orleans, Louisiana. He attended
+St. Augustine High School in New Orleans, where he played baseball and basketball. He was drafted by the Cardinals in the first round of the 1962 Major League Baseball draft.
+Roberts made his MLB debut with the Cardinals in 1965. He played for the Cardinals until 1973, when he was traded to the
+New York Mets. He retired after the 1973 season.
+In his 18-year MLB career, Roberts batted .262 with a .356 on-base percentage and .399 slugging percentage. He had 1,000 career hits and 1,100 career runs batted in (RBIs). He was named to the National League All-Star team in 1967 and 1968. He was also a member of the Cardinals' 1967 World Series championship team.","[(212, 13)]"
+11907622,https://en.wikipedia.org/wiki/USS%20Project%20%28AM-278%29,USS Project (AM-278),3,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'USS Project (AM-278)'.
-**The introduction should be exactly 8 sentences long.**
+The introduction should be at least 190 words long and 8 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: USS Project (AM–278) was an built for","USS Project (AM–278) was an  built for the United States Navy during World War II. She was decommissioned in 1947 after wartime service and transferred to the Philippine Navy in 1948 where she served under the name RPS Samar (M-33). She was stricken from the Philippine Navy in 1960; beyond that, her fate is not reported in secondary sources. Career
+Do not include headings or editorial notes.
+### | Response | ###
+USS Project (AM–278) was an built for
+","USS Project (AM–278) was an  built for the United States Navy during World War II. She was decommissioned in 1947 after wartime service and transferred to the Philippine Navy in 1948 where she served under the name RPS Samar (M-33). She was stricken from the Philippine Navy in 1960; beyond that, her fate is not reported in secondary sources. Career
 Project was laid down 1 July 1943 by Gulf Ship Building Corp., Chickasaw, Alabama; launched 20 November 1943; sponsored by Mrs. Irene D. Jenkins; and commissioned 22 August 1944. Project departed U.S. Naval Repair Station, Algiers, Louisiana, 7 September for Little Creek, Virginia. En route, she drove off  after it had torpedoed   off Wilmington, North Carolina, 12 September. Later operations for the minesweeper ranged from Portland, Maine, where she trained with friendly submarines in October, to Cape Charles, Virginia, where she planted small mines, to Port Royal, Bermuda, to which she escorted Keawah and  in December.","(190, 8)","USS Project (AM–278) was an  built for the United States Navy during World War II.
 
 USS ""Project"" (AM-278) was the seventh ship of the United States Navy to be named for AM-278, a World War I-era minesweeper.
@@ -200,64 +207,61 @@ Following shakedown off the Northeastern United States, ""Project"" departed New
 
 Joining Task Group (TG) 50.3, ""Project"" participated in the Okinawa campaign from 17 July through 1 September 1945. During that time, she made several sweeps of the Hagushi beaches and assisted in the destruction of numerous Japanese installations. On 8 September, she departed Okinawa for San Francisco, where she arrived on 23 September 1945. The minesweeper then operated off the California coast until decommissioned at Mare Island Naval Shipyard on 22 July 1946.
 
- USS ""Project"" received nine battle stars for her World War II service.",,,,"USS Project (AM–278) was an built for the United States Navy during World War II. She was launched in 1944 and served as a minesweeper in the Pacific Theater until the end of the war. After the war, she was decommissioned and sold for scrap in 1946.","[(53, 3)]","USS Project (AM–278) was an built for the U.S. Navy during World War II.
-
-Key details and context:
-
-The ship was built by the American Shipbuilding Company in Kearny, New Jersey.
-
-It was launched on September 30, 1943 and commissioned on October 31, 1944.
-
-She was decommissioned in 1946 and struck from the Naval Vessel Register in 1947.
-
-The vessel was sold for scrap in 1948.
-
-Source: [Wikipedia](https://en.wikipedia.org/wiki/USS_Project_(AM-278))","[(90, 6)]"
-4352382,https://en.wikipedia.org/wiki/Marc%20Habscheid,Marc Habscheid,2,"Your role is a Wikipedia contributor.
+ USS ""Project"" received nine battle stars for her World War II service.","(258, 11)","USS Project (AM–278) was an built for
+the United States Navy during World War II. She was launched in 1944 and served as a minesweeper in the Pacific Theater until the end of the war. After the war, she was decommissioned and sold for scrap in 1947.
+USS Project was built by the Defoe Shipbuilding Company in Bay City, Michigan. She was launched on April 15, 1944 and commissioned on July 28, 1944 under the command of Lieutenant Commander William H. Purnell.
+During her service in the Pacific Theater, USS Project participated in several major campaigns, including the Battle of Leyte Gulf, the Battle of Iwo Jima, and the Battle of Okinawa. She was also involved in the liberation of the Philippines and the occupation of Japan.
+After the war, USS Project was decommissioned on December 20, 1946 and sold for scrap on March 31, 1947. She was struck from the Naval Vessel Register on May 1, 1947.
+In conclusion, USS Project was a minesweeper that served in the Pacific Theater during World War II and played a significant role in several major campaigns. Despite her short service life, she left a lasting impact on the history of the United States Navy.","[(229, 11)]","USS Project (AM–278) was an built for
+the U.S. Navy during World War II.
+The ship was launched in 1943 and commissioned in 1944.
+It was decommissioned in 1946 and scrapped in 1947.","[(38, 3)]"
+4352382,https://en.wikipedia.org/wiki/Marc%20Habscheid,Marc Habscheid,2,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'Marc Habscheid'.
-**The introduction should be exactly 14 sentences long.**
+The introduction should be at least 287 words long and 14 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: Marc Joseph Habscheid (born March 1, 1963)","Marc Joseph Habscheid (born March 1, 1963) is a Canadian ice hockey coach and former National Hockey League player. Habscheid is the current head coach of the Prince Albert Raiders of the Western Hockey League. He was drafted in the sixth round, 113th Overall in the 1981 NHL Entry Draft by the Edmonton Oilers. He played 345 games in the NHL over parts of 10 seasons, amassing 72 goals and 163 points. Playing career
+Do not include headings or editorial notes.
+### | Response | ###
+Marc Joseph Habscheid (born March 1, 1963)
+","Marc Joseph Habscheid (born March 1, 1963) is a Canadian ice hockey coach and former National Hockey League player. Habscheid is the current head coach of the Prince Albert Raiders of the Western Hockey League. He was drafted in the sixth round, 113th Overall in the 1981 NHL Entry Draft by the Edmonton Oilers. He played 345 games in the NHL over parts of 10 seasons, amassing 72 goals and 163 points. Playing career
 Born in Wymark, Saskatchewan, Habscheid's parents were both born in Luxembourg before moving to Canada. Habscheid played three seasons with the Western Hockey League's Saskatoon Blades before turning pro. This included the 1981–82 campaign where Habscheid had 151 points, second only to Bruce Eakin in team scoring. He also played in the 1982 World Junior Hockey Championship, leading Canada to its first ever gold medal at the tournament. That season he played 7 games with the Oilers, scoring 4 points. He played 4 more seasons with the Oilers, before he was suspended by the team for refusing to report to the AHL's Nova Scotia Voyageurs and subsequently dealt to Minnesota in December 1985. Habscheid played 7 more NHL seasons with Minnesota, Detroit, and Calgary. He also represented Canada internationally twice, at the 1988 Winter Olympics and the 1992 World Championships. Habscheid went on to play 5 more seasons of hockey (2 in Switzerland, 2 with the IHL's Las Vegas Thunder, and one final season in 1995–96 with the DEL's Augsburger Panther). He retired officially in 1996.","(287, 14)","Marc Joseph Habscheid (born March 1, 1963) is a Swiss professional ice hockey coach and former player who is currently an assistant coach for the HC Davos of the National League A (NLA). Habscheid played in the National Hockey League (NHL) for 14 seasons with the St. Louis Blues, Calgary Flames, and New York Islanders.
 
 Habscheid was drafted by the Blues in the third round, 74th overall, of the 1982 NHL Entry Draft. He played parts of four seasons with the Blues before being traded to Calgary on March 9, 1986. He spent three seasons with Calgary before being traded to the Islanders on October 5, 1989. Habscheid played six seasons with the Islanders before retiring after the 1993–94 season. He finished his NHL career with 266 points (136 goals and 150 assists) and 857 penalty minutes in 437 games.
 
-Habscheid began his coaching career as an assistant coach with HC Davos of the NLA in 2004. He was promoted to head coach of Davos in 2009 and led them to two NLA championships in his three seasons as head coach. He was named assistant coach of Switzerland's national team in 2011 and served in that role until 2015 when he was named head coach of Switzerland's Olympic team.",,,,"Marc Joseph Habscheid (born March 1, 1963) is a Canadian former professional ice hockey player who played in the National Hockey League (NHL) between 1984 and 1995. He was drafted in the second round, 28th overall, by the Detroit Red Wings in the 1981 NHL Entry Draft.
-
-Habscheid played junior hockey with the Regina Pats of the Western Hockey League (WHL) from 1979 to 1982. He was named to the WHL West Second All-Star Team in 1981–82. Habscheid made his professional debut with the Adirondack Red Wings of the American Hockey League (AHL) during the 1982–83 season. In 1983–84, he split time between the Red Wings and the Kalamazoo Wings of the International Hockey League (IHL).
-
-Habscheid made his NHL debut with the Red Wings during the 1984–85 season. He scored his first NHL goal on October 27, 1984, against Mike Liut of the St. Louis Blues. Habscheid spent the majority of the 1985–86 and 1986–87 seasons with the Red Wings before being traded to the Minnesota North Stars on March 10, 1987, in exchange for Paul MacDermid. Habscheid remained with the North Stars until the end of the 1988–89 season, when he was traded to the New Jersey Devils in exchange for John MacLean.
-
-Habscheid spent the 1989–90 and 1990–91 seasons with the Devils before returning to the Red Wings for the 1991–92 season. During the 1992–93 season, Habscheid was traded to the Winnipeg Jets in exchange for Tim Cheveldae. Habscheid retired from professional hockey following the 1994–95 season.","[(283, 13)]","Marc Joseph Habscheid (born March 1, 1963) is a Canadian former professional ice hockey defenceman who played in the National Hockey League (NHL) for the Montreal Canadiens, Los Angeles Kings, and Vancouver Canucks.
-
-Early life
-
-Habscheid was born in Montreal, Quebec, Canada. He is the son of former NHL goaltender and coach Marc Habscheidt.
-
-Playing career
-
-After playing junior hockey with the Montreal Junior Canadiens of the Quebec Major Junior Hockey League, he made his NHL debut with the Canadiens in the 1983–84 NHL season.
-
-In 1987, he was traded to the Los Angeles Kings. He played with the Kings until 1991, when he was traded back to the Canadients.
-
-After the 1991–92 NHL season, he was signed as a free agent by the Vancouver Canucks, where he played until the end of the 1995–96 NHL season, when he retired from the NHL.
-
-Coaching career
-
-In the 1996–97 NHL season, after retiring from the NHL, he was hired as an assistant coach with the Canucks. He was promoted to head coach of the Canucks for the 1997–98 NHL season. He coached the Canucks until the 1999–2000 NHL season. In the 2000–01 NHL season he was hired by the New Jersey Devils as an assistant to head coach Pat Burns. After the 2001–02 NHL season, Burns was fired by the Devils and replaced by Claude Julien.
-
-On July 2, 2002, he was named assistant coach of the New York Rangers. In 2003, he was promoted to associate coach of the Rangers. On June 30, 2005, he was fired as associate coach by the Rangers.
-
-Personal life","[(303, 16)]"
-31533973,https://en.wikipedia.org/wiki/Terence%20Battersby,Terence Battersby,2,"Your role is a Wikipedia contributor.
+Habscheid began his coaching career as an assistant coach with HC Davos of the NLA in 2004. He was promoted to head coach of Davos in 2009 and led them to two NLA championships in his three seasons as head coach. He was named assistant coach of Switzerland's national team in 2011 and served in that role until 2015 when he was named head coach of Switzerland's Olympic team.","(236, 10)","Marc Joseph Habscheid (born March 1, 1963)
+is a Canadian former professional ice hockey player who played in the National Hockey League (NHL) from 1982 to 1994.
+Habscheid was born in Edmonton, Alberta, and grew up in nearby St. Albert.
+He played junior hockey for the St. Albert Saints of the Alberta Junior Hockey League (AJHL) from 1979 to 1982.
+In his final season with the Saints, he led the team to the AJHL championship and was named the league's most valuable player (MVP).
+Habscheid was drafted by the Minnesota North Stars in the second round, 28th overall, in the 1982 NHL Entry Draft.
+He made his NHL debut with the North Stars on October 8, 1982, against the Detroit Red Wings.
+Habscheid played for the North Stars until 1987, when he was traded to the Winnipeg Jets.
+He played for the Jets until 1990, when he was again traded, this time to the Vancouver Canucks.
+Habscheid retired from professional hockey in 1994 after playing one season with the San Jose Sharks.
+During his NHL career, Habscheid played in 614 games and scored 134 goals and 184 assists for a total of 318 points.
+He also played for Team Canada at the 1984 Canada Cup and the 1987 World Championship.
+After retiring from professional hockey, Habscheid became a coach.
+He was the head coach of the Kelowna Rockets of the Western Hockey League (WHL) from 1996 to 2000, leading the team to the WHL championship in 1999.
+He was also the head coach of Team Canada at the IIHF World U20 Championship in 2005 and 2006.
+Habscheid has been inducted into the Alberta Hockey Hall of Fame and the St. Albert Sports Hall of Fame.
+He currently resides in Kelowna, British Columbia, with his wife and two children.","[(341, 16)]","Marc Joseph Habscheid (born March 1, 1963)
+is a retired Canadian professional ice hockey defenceman.
+Habscheid was drafted by the Montreal Canadiens in the first round, 12th overall, of the 1981 NHL Entry Draft.
+He played for the Canadiens from 1981 to 1993, and then played for the New Jersey Devils from 1993 to 1997.
+Habschead was a member of the 1993 Stanley Cup-winning Canadiens team.
+He was also a member of Canada's gold medal-winning team at the 1998 Winter Olympics.
+Habbcheid was inducted into the Hockey Hall of Fame in 2010.
+###","[(108, 7)]"
+31533973,https://en.wikipedia.org/wiki/Terence%20Battersby,Terence Battersby,2,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'Terence Battersby'.
-**The introduction should be exactly 8 sentences long.**
+The introduction should be at least 163 words long and 8 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: Brigadier Terence Esmond Maxwell Battersby (29 October","Brigadier Terence Esmond Maxwell Battersby (29 October 1893 – 10 January 1972) was an English cricketer and British Army officer.  Battersby was a left-handed batsman.  He was born in Meerut, then in the British Raj, before moving back to England where he was educated at Marlborough College.  There he played for the college cricket team. Battersby represented Suffolk in the 1913 Minor Counties Championship, playing a single match against Lincolnshire. Battersby was mentioned in the London Gazette in February 1914 as having graduated from the Royal Military College with the rank of 2nd Lieutenant. After graduating he joined the Prince of Wales's Leinster Regiment who he served in the First World War within the regiments 1st Battalion. He was once again mentioned in a supplement to the Gazette in 1920, detailing his special appointment to Vice Captain while still serving in the Prince of Wales's Leinster Regiment.","(163, 8)","Brigadier Terence Esmond Maxwell Battersby (29 October 1924 – 3 May 2002) was a British army officer and Conservative politician.
+Do not include headings or editorial notes.
+### | Response | ###
+Brigadier Terence Esmond Maxwell Battersby (29 October
+","Brigadier Terence Esmond Maxwell Battersby (29 October 1893 – 10 January 1972) was an English cricketer and British Army officer.  Battersby was a left-handed batsman.  He was born in Meerut, then in the British Raj, before moving back to England where he was educated at Marlborough College.  There he played for the college cricket team. Battersby represented Suffolk in the 1913 Minor Counties Championship, playing a single match against Lincolnshire. Battersby was mentioned in the London Gazette in February 1914 as having graduated from the Royal Military College with the rank of 2nd Lieutenant. After graduating he joined the Prince of Wales's Leinster Regiment who he served in the First World War within the regiments 1st Battalion. He was once again mentioned in a supplement to the Gazette in 1920, detailing his special appointment to Vice Captain while still serving in the Prince of Wales's Leinster Regiment.","(163, 8)","Brigadier Terence Esmond Maxwell Battersby (29 October 1924 – 3 May 2002) was a British army officer and Conservative politician.
 
 Battersby was born in Liverpool, Lancashire, the son of James Maxwell Battersby, a railway clerk, and his wife, Alice. After attending the local secondary school, he served in the Royal Air Force during World War II. He was commissioned into the Royal Welch Fusiliers in 1943 and fought in Normandy and Belgium. He was appointed an Officer of the Order of the British Empire (OBE) in 1945.
 
@@ -265,69 +269,128 @@ After the war, Battersby attended Hertford College, Oxford, where he read law. H
 
 Battersby returned to active service in the British Army in 1957, serving as a captain in the 4th Queen's Own Hussars. He became involved in Conservative politics and was elected as MP for Liverpool Lime Street at the 1959 general election. He held the seat until his retirement at the 1987 general election. He served as Parliamentary Secretary to Defence from 1970 to 1972 and as Secretary of State for Social Services from 1974 to 1976.
 
-Battersby died at his home in Liverpool aged 78.",,,,"Brigadier Terence Esmond Maxwell Battersby (29 October 1917 – 1 January 2003) was a British Army officer who served in the Second World War and later became a senior commander in the British Army of the Rhine (BAOR) during the Cold War. Born into an aristocratic family, Battersby was educated at Eton College before attending the Royal Military College, Sandhurst. He was commissioned into the King's Royal Rifle Corps in 1938 and saw active service during the Second World War, serving in North Africa and Italy. After the war, Battersby attended the Staff College, Camberley and was promoted to the rank of lieutenant colonel. He then served as a brigade commander in the BAOR during the 1950s and 1960s, before retiring from the army in 1972. In retirement, Battersby wrote a memoir of his military career, which was published posthumously in 2004. Battersby was married twice and had four children. He died in 2003, aged 85.","[(178, 8)]","Brigadier Terence Esmond Maxwell Battersby (29 October 1918 – 1 March 2008) was a British Army officer and a recipient of the Victoria Cross, the highest and most prestigious award for gallantry in the face of the enemy that can be awarded to British and Commonwealth forces.
-
-Battersby was born in London, England, the son of Esmond Battersby, a solicitor, and his wife. He was educated at Eton College and the Royal Military College, Sandhurst. He was commissioned into the Royal Artillery in 1937.
-
-During the Second World War, Battersby served in North Africa and Italy. He was awarded the Victoria Cross for his actions during the Second Battle of El Alamein in October 1942.
-
-After the war, he served with the British Army of the Rhine in Germany. He retired from the Army in 1961.
-
-He died in 2008, aged 89.
-
-Source: https://en.wikipedia.org/wiki/Terence_Battersby","[(167, 10)]"
-758725,https://en.wikipedia.org/wiki/Alonso%20de%20Ojeda,Alonso de Ojeda,3,"Your role is a Wikipedia contributor.
+Battersby died at his home in Liverpool aged 78.","(245, 13)","Brigadier Terence Esmond Maxwell Battersby (29 October
+1919 – 1 January 2003) was a British Army officer who served in the
+Second World War and the Malayan Emergency. He was awarded the
+Victoria Cross, the highest and most prestigious award for gallantry
+in the face of the enemy that can be awarded to British and
+Commonwealth forces.
+Battersby was born on 29 October 1919 in London, England, the son of
+Esmond Battersby, a solicitor, and his wife, Muriel. He was educated
+at Eton College and the Royal Military College, Sandhurst. He was
+commissioned as a second lieutenant into the King's Royal Rifle
+Corporation on 30 July 1939, and was promoted to lieutenant on 30
+July 1940.
+During the Second World War, Battersby served with the 1st Battalion,
+King's Royal Rifle Corps, part of the 1st Infantry Brigade, 1st
+Infantry Division, in North Africa, Sicily and Italy. He was
+awarded the Military Cross for his actions during the Battle of
+Medenine on 6 March 1943, when he led his platoon in an attack on
+German positions. He was promoted to captain on 30 April 1944.
+Battersby took part in the Allied invasion of Sicily in July 1943,
+and the Allied invasion of Italy in September 1943. He was awarded
+the Distinguished Service Order for his actions during Operation
+Shingle, the Allied landings at Anzio on 22 January 1944, when he
+led his company in an attack on German positions. He was mentioned
+in despatches on 1 June 1944, and was awarded the Croix de Guerre
+with Silver Star by the French government on 25 August 1944.
+After the end of the war in Europe, Battersby was posted to the
+Far East, where he served with the 2nd Battalion, King's Royal
+Rifle Corps, part of 28th Commonwealth Infantry Brigade, in Malaya.
+He was awarded the Victoria Cross for his actions on 12 May 1950,
+when he led his company in an assault on a Chinese communist
+position. He was mentioned in despatches on 5 June 1950, and was
+promoted to major on 31 December 1950.
+Battersby retired from the army in 1957, and worked as a stockbroker","[(401, 15)]","Brigadier Terence Esmond Maxwell Battersby (29 October
+1918 – 18 March 2008) was a British Army officer and
+politician.
+He was born in London, the son of Esmond Battersby, a
+banker. He was educated at Eton College and the Royal
+Military Academy, Sandhurst.
+Battersby was commissioned into the Royal Artillery in
+1939 and served in the Middle East during the Second World
+War. He was awarded the Military Cross in 1942.
+After the war, Battersby served in the British Army of the
+Rhine. He was promoted to lieutenant-colonel in 1947 and
+to colonel in 1951.
+In 1953, Battersay was appointed as the British Military
+Attache in Washington, D.C. He was posted to the United
+Kingdom in 1955, where he served as a staff officer at the
+Ministry of Defence. In 1957, he was promoted to brigadier
+and appointed as the Deputy Chief of the Defence Staff.
+He retired from the British Army in 1961.
+###","[(178, 12)]"
+758725,https://en.wikipedia.org/wiki/Alonso%20de%20Ojeda,Alonso de Ojeda,3,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'Alonso de Ojeda'.
-**The introduction should be exactly 8 sentences long.**
+The introduction should be at least 192 words long and 8 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: Alonso de Ojeda (; c. 1466 –","Alonso de Ojeda  (; c. 1466 – c. 1515) was a Spanish explorer, governor and conquistador. He travelled through modern-day Guyana, Venezuela, Trinidad, Tobago, Curaçao, Aruba and Colombia. He navigated with Amerigo Vespucci who is famous for having named Venezuela, which he explored during his first two expeditions, for having been the first European to visit Guyana, Curaçao, Colombia, and  Lake Maracaibo, and later for founding Santa Cruz (La Guairita). Early life 
+Do not include headings or editorial notes.
+### | Response | ###
+Alonso de Ojeda (; c. 1466 –
+","Alonso de Ojeda  (; c. 1466 – c. 1515) was a Spanish explorer, governor and conquistador. He travelled through modern-day Guyana, Venezuela, Trinidad, Tobago, Curaçao, Aruba and Colombia. He navigated with Amerigo Vespucci who is famous for having named Venezuela, which he explored during his first two expeditions, for having been the first European to visit Guyana, Curaçao, Colombia, and  Lake Maracaibo, and later for founding Santa Cruz (La Guairita). Early life 
 Alonso de Ojeda was born in Torrejoncillo del Rey, New Castile around 1466. His father, Rodrigo de Huete, was a minor noble who fought for Isabel in 1474 during the War of the Castilian Succession. Isabel was grateful for his support and put his son, Alonso, under her protection. In his youth, Alonso served the Duke of Medinaceli, Luis de la Cerda. In service to the duke, he distinguished himself in the conquest of Granada with his military abilities, his skill as a swordsman and his bravery.","(192, 8)","Alonso de Ojeda  (; c. 1466 – c. 1524) was a Spanish conquistador, who led the first expedition of Europeans to reach America by land since the Discovery of America. He is considered the first European explorer of the Americas.
 
 Ojeda was born in Palencia, Spain circa 1466. He participated in the 1492 voyage of Christopher Columbus, and in 1500 he joined the second voyage of Columbus as a sailor. After reaching Hispaniola, he took part in the conquest of Puerto Rico and Cuba. He also served as governor of Santo Domingo, where he founded the city of Santo Domingo de Guzmán on the north coast of Hispaniola. In 1502 Ojeda returned to Spain with a wealth of new knowledge about America and the Caribbean Sea.
 
 In 1508 he sailed again for America, this time as a member of Ferdinand Magellan's expedition to circumnavigate the globe. After enduring terrible seasickness and two disastrous shipwreck encounters, Magellan gave up his quest and Ojeda became the captain of the only remaining ship, which he led back to Spain in 1519. Along the way, he discovered Guam and claimed it for Spain. Ojeda was later accused of killing a Portuguese explorer who had been exploring the island for Spain; however, he was never convicted of murder. 
 
-Ojeda died in Cádiz or Seville around 1524, aged about 66 years old.",,,,"Alonso de Ojeda (; c. 1466 – 1515) was a Spanish explorer and conquistador. He took part in the first voyage to the New World under the command of Christopher Columbus in 1492. In 1499, he led an expedition along the northern coast of South America, discovering the Gulf of Venezuela and the mouth of the Orinoco River. He also explored the Caribbean islands of Trinidad and Tobago. Ojeda was known for his bravery and leadership skills, but he also had a reputation for cruelty and violence towards the indigenous people he encountered. He was eventually stripped of his command and returned to Spain in disgrace. Despite his controversial legacy, Ojeda remains an important figure in the history of European exploration and colonization of the Americas.","[(139, 7)]","Alonso de Ojeda (; c. 1466 – c. 1515) was a Spanish explorer, navigator, and conquistador. He was the first European to explore and map the coast of South America from the Atlantic Ocean to the Pacific Ocean.
-
-Early life
-
-Ojeda was born around 1466 in Seville, Andalusia, Spain. His father, Alonso Ojeda, was a nobleman, and his mother was a noblewoman. Ojeda's father died when he was young, and he was raised by his mother and her second husband. Ojeda was educated at the University of Salamanca, where he received a degree in law.
-
-Career
-
-In 1492, Ojeda sailed with Christopher Columbus on his second voyage to the Americas. During this voyage, Ojeda explored the coasts of Cuba, Jamaica, and Hispaniola. In 1493, Ojeda returned to Spain with Columbus.
-
-After Columbus's death in 1506, Ojeda continued to explore the Americas. In 1508, Ojeda led an expedition to explore the coast of Venezuela. In 1510, Ojeda and his crew explored the coast of Brazil.
-
-Later life
-
-After his return to Spain in 1515, Ojeda worked as a lawyer and diplomat. He died in Seville in 1527.
-
-Legacy
-
-In the 16th century, Ojeda was considered one of the most important explorers of the Americas. Today, Ojeda is less well known than other explorers such as Christopher Columbus and Vasco da Gama. However, Ojeda played an important role in opening up the Americas to European exploration and colonization.","[(278, 17)]"
-39905881,https://en.wikipedia.org/wiki/The%20Blackest%20Beautiful,The Blackest Beautiful,3,"Your role is a Wikipedia contributor.
+Ojeda died in Cádiz or Seville around 1524, aged about 66 years old.","(253, 12)","Alonso de Ojeda (; c. 1466 –
+1515) was a Spanish explorer and conquistador who took part in the first voyages to the Americas under the command of Christopher Columbus. He was the first European to explore the Gulf of Venezuela and the first to land on the mainland of South America at the mouth of the Orinoco River.
+Ojeda was born in Granada, Spain, around 1466. Little is known about his early life, but it is believed that he served as a page in the court of Queen Isabella I of Castile. In 1492, he accompanied Christopher Columbus on his first voyage to the Americas. During this expedition, Ojeda explored the Caribbean islands of Hispaniola, Cuba, and Jamaica.
+In 1499, Ojeda led his own expedition to the Americas. He sailed from Spain with a fleet of four ships and a crew of about 300 men. The expedition's goal was to explore the coast of South America and search for gold and other riches. Ojeda and his men landed on the coast of Venezuela, where they encountered the indigenous people of the region. Ojeda's men enslaved many of the indigenous people and forced them to work in the gold mines.
+In 1500, Ojeda returned to Spain with a large amount of gold and other treasures. However, he was accused of mistreating the indigenous people and enslaving them against their will. As a result, he was stripped of his title and banished from Spain. He spent the rest of his life in exile, traveling throughout Europe and the Middle East.
+Ojeda died in 1515, while on a pilgrimage to Jerusalem. He was buried in the Church of the Holy Sepulchre in Jerusalem. Today, Ojeda is remembered as one of the early explorers of the Americas and as a controversial figure in the history of Spanish colonization.","[(342, 18)]","Alonso de Ojeda (; c. 1466 –
+1604) was a Spanish explorer and navigator.
+He was the first European to explore the coasts of South America and the Caribbean.
+Alonso was born in Seville, Spain, in 1466.
+As a young man, he served as a page in the court of King Ferdinand II of Aragon.
+In 1492, he accompanied Christopher Columbus on his second voyage to the New World.
+After the death of Columbus in 1506, Ojeda returned to Spain, where he was appointed governor of the Canary Islands.
+In the 1510s and 1520s, Ojeda led several expeditions to the Caribbean and South America.
+He explored the coast of Venezuela and the Gulf of Paria.
+Ojeda also explored the northern coast of South America, reaching the mouth of the Orinoco River.
+He returned to Spain in 1524, where he spent the rest of his life.
+In addition to his explorations, Ojeda wrote several books about his travels.
+He died in Seville in 1604.","[(187, 12)]"
+39905881,https://en.wikipedia.org/wiki/The%20Blackest%20Beautiful,The Blackest Beautiful,3,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'The Blackest Beautiful'.
-**The introduction should be exactly 8 sentences long.**
+The introduction should be at least 218 words long and 8 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: The Blackest Beautiful is the third studio","The Blackest Beautiful is the third studio album by American rock band Letlive. It was released by Epitaph Records on July 9, 2013. Recorded between June 2012 and January 2013, the album used four drum sessions, and went through ten recording engineers before settling on Stephen George. The drums were recorded with session musician Christopher Crandall, in the absence of the band having a permanent drummer at the time. The album incorporated a variety of music styles based on its members, including punk rock, funk, and soul; it was mastered and mixed to have a ""more human"" and ""organic"" sound. Although the album was not expected to sell well because it was streamed for free prior to release, it still debuted in the United States at number 74 on the Billboard 200 and number six on the Hard Rock Albums chart, with nearly five thousand copies sold. The band toured the United Kingdom and Ireland to support the album, and joined other bands on tours across the United States. Critics welcomed the album, praising its crisp production and forward-thinking sound within post-hardcore, with Metacritic giving an aggregate rating of ""universal acclaim"".","(218, 8)","The Blackest Beautiful is the third studio album by American rapper and songwriter A$AP Rocky. It was released on September 18, 2016, by ASAP Worldwide and Def Jam Recordings. The album features guest appearances from ScHoolboy Q, 2 Chainz, Future, and Pharrell Williams.
+Do not include headings or editorial notes.
+### | Response | ###
+The Blackest Beautiful is the third studio
+","The Blackest Beautiful is the third studio album by American rock band Letlive. It was released by Epitaph Records on July 9, 2013. Recorded between June 2012 and January 2013, the album used four drum sessions, and went through ten recording engineers before settling on Stephen George. The drums were recorded with session musician Christopher Crandall, in the absence of the band having a permanent drummer at the time. The album incorporated a variety of music styles based on its members, including punk rock, funk, and soul; it was mastered and mixed to have a ""more human"" and ""organic"" sound. Although the album was not expected to sell well because it was streamed for free prior to release, it still debuted in the United States at number 74 on the Billboard 200 and number six on the Hard Rock Albums chart, with nearly five thousand copies sold. The band toured the United Kingdom and Ireland to support the album, and joined other bands on tours across the United States. Critics welcomed the album, praising its crisp production and forward-thinking sound within post-hardcore, with Metacritic giving an aggregate rating of ""universal acclaim"".","(218, 8)","The Blackest Beautiful is the third studio album by American rapper and songwriter A$AP Rocky. It was released on September 18, 2016, by ASAP Worldwide and Def Jam Recordings. The album features guest appearances from ScHoolboy Q, 2 Chainz, Future, and Pharrell Williams.
 
 The Blackest Beautiful is a dark and introspective album that explores the themes of addiction, depression, and self-destruction. The album was produced by Rocky himself alongside several other producers including Cardo, Harry Fraud, and Mike Dean. The album has been met with generally positive reviews from music critics who praised its production and A$AP Rocky's lyrical content.
 
-A$AP Rocky released his first album Long.Live.A$AP in 2013 to critical acclaim and commercial success. His second album AT.LAS.RiP was a more experimental release that saw him branching out into different genres of music including funk, soul, and rock. The Blackest Beautiful is A$AP Rocky's third studio album and his first since being sentenced to eight months in prison for felony assault in 2015.",,,,"The Blackest Beautiful is the third studio album by American hip hop recording artist Kendrick Lamar, released on June 30, 2015, by Top Dawg Entertainment, Aftermath Entertainment, and Interscope Records. The album features guest appearances from Bilal, James Fauntleroy, Ronald Isley, Anna Wise, Snoop Dogg, George Clinton, and Dr. Dre. Production was handled by a variety of record producers, including Boi-1da, DJ Dahi, Flying Lotus, Terrace Martin, Rahki, Sounwave, Tae Beast, and Thundercat, among others. The Blackest Beautiful serves as the follow-up to Lamar's second studio album, Good Kid, M.A.A.D City (2012).
-
-The Blackest Beautiful received generally positive reviews from music critics, who praised its production and Lamar's lyricism. The album debuted at number one on the US Billboard 200 chart, selling 319,000 copies in its first week. It has since been certified platinum by the Recording Industry Association of America (RIAA). The Blackest Beautiful was nominated for Best Rap Album at the 58th Annual Grammy Awards, but lost to To Pimp a Butterfly, Lamar's fourth studio album.","[(209, 8)]","The Blackest Beautiful is the third studio album by American R&B singer Ciara. It was released on September 2, 2009, by LaFace Records and Jive Records. The album's lead single, ""Love Sex Magic"", featuring Justin Timberlake, was released on August 11, 2008, and peaked at number one on the US Billboard Hot 100. The album debuted at number two on the Billboard 200, with first-week sales of 95,000 copies in the United States.","[(90, 4)]"
-52727235,https://en.wikipedia.org/wiki/Varioonops,Varioonops,1,"Your role is a Wikipedia contributor.
+A$AP Rocky released his first album Long.Live.A$AP in 2013 to critical acclaim and commercial success. His second album AT.LAS.RiP was a more experimental release that saw him branching out into different genres of music including funk, soul, and rock. The Blackest Beautiful is A$AP Rocky's third studio album and his first since being sentenced to eight months in prison for felony assault in 2015.","(196, 9)","The Blackest Beautiful is the third studio
+album by American singer-songwriter H.E.R. It was released on May 1, 2020, by RCA Records. The album features guest appearances from Chris Brown, YG, DJ Khaled, and Bryson Tiller. The album debuted at number one on the US Billboard 200 chart, earning 169,000 album-equivalent units in its first week.
+The Blackest Beautiful received generally positive reviews from music critics. At Metacritic, which assigns a normalized rating out of 100 to reviews from mainstream publications, the album received an average score of 78, based on 11 reviews. AllMusic's Neil Z. Yeung gave the album four out of five stars, praising H.E.R.'s vocals and songwriting, as well as the album's production. Writing for Pitchfork, Sheldon Pearce gave the album a 7.5 out of 10, calling it ""a confident step forward"" for H.E.R., but criticizing the album's lack of originality. In a more mixed review, Rolling Stone's Jon Caramanica gave the album three and a half stars out of five, writing that the album ""feels like a collection of songs rather than a cohesive whole.""
+The Blackest Beautiful was nominated for Best R&B Album at the 63rd Annual Grammy Awards, but lost to Lizzo's Cuz I Love You (Deluxe).","[(245, 11)]","The Blackest Beautiful is the third studio
+album by American R&B singer
+Alicia Keys. It was released on November 4, 2016, by RCA Records.
+The album was preceded by the singles ""In Common"" and ""Blended Family (What You Do for Love)"".
+The album debuted at number one on the
+Billboard 200, making Keys the first female artist to debut at number one with three consecutive studio albums.
+It also became Keys' third consecutive number-one album on the Billboard 200, following Girl on Fire (2012) and
+The Element of Freedom (2009).
+The album received generally positive reviews from music critics.
+At Metacritic, which assigns a normalized rating out of 100 to reviews from mainstream publications,
+the album received an average score of 72, based on 17 reviews, indicating ""generally favorable reviews"".
+It was nominated for Best R&B Album at the 59th Annual Grammy Awards.
+The song ""Blurred Lines"" was nominated for Record of the Year, Song of the Year and Best Pop Duo/Group Performance
+at the 56th Grammy Awards, but lost to ""Get Lucky"" by Daft Punk and Pharrell Williams.","[(219, 9)]"
+52727235,https://en.wikipedia.org/wiki/Varioonops,Varioonops,1,"### | Instruction | ###
+Your role is a Wikipedia contributor.
 Your task is to compose a detailed Wikipedia-style introduction for the topic 'Varioonops'.
-**The introduction should be exactly 2 sentences long.**
+The introduction should be at least 265 words long and 2 sentences long.
 Begin with a clear definition, followed by key details and context essential for understanding the topic.
-Do not include section headings, bullet points, or editing instructions.
-
-Introduction: Varioonops is a genus of goblin spiders","Varioonops is a genus of goblin spiders that was first described by A. Bolzern & Norman I. Platnick in 2013. Species
+Do not include headings or editorial notes.
+### | Response | ###
+Varioonops is a genus of goblin spiders
+","Varioonops is a genus of goblin spiders that was first described by A. Bolzern & Norman I. Platnick in 2013. Species
  it contains twenty-three species, found in Colombia, Venezuela, Panama, and Costa Rica:
 Varioonops cafista Bolzern & Platnick, 2013 (type) – Costa Rica
 Varioonops cerrado Bolzern & Platnick, 2013 – Panama
@@ -357,23 +420,14 @@ There are about 10 described species in Varioonops. They are found in the easter
 
 Varioonops is a small genus, with most of the described species measuring only 3-4 millimetres in body length. They are usually black or dark brown, but can be light or dark green or purple. They have long legs and a long, slender body.
 
-The genus is mostly known for its peculiar spinnerets, which are composed of several hundred separate segments. These spinnerets can be moved independently of each other, allowing the spiders to create extremely fine spiderwebs.",,,,"Varioonops is a genus of goblin spiders, belonging to the family Oonopidae. These tiny arachnids are characterized by their small size, typically measuring less than 2 millimeters in length. They are found in tropical rainforests, where they inhabit leaf litter and other decaying organic matter. Varioonops species are known for their unique ability to camouflage themselves by changing color to match their surroundings. This adaptation allows them to blend in with their environment and avoid detection by predators. Despite their small size, Varioonops spiders play an important role in the ecosystem by helping to break down organic matter and recycle nutrients.","[(111, 6)]","Varioonops is a genus of goblin spiders in the family Theridiosomatidae. They are found in Australia and New Zealand.
-
-Key details and context: The genus was first described in 2007 by Australian arachnologist David R. Maddison. The genus contains two species, V. australis and V. hirsutus.
-
-Section headings:
-
-Section 1: Description
-Section 2: Distribution
-Section 3: Behavior
-Section 4: Ecology
-Section 5: Threats
-Section 6: Conservation
-Section 7: References
-Section 8: External links
-Section 9: Glossary
-Section 10: See also
-Section 11: Notes
-Section 12: Bibliography
-Section 13: Further reading
-Section 14: External links","[(115, 5)]"
+The genus is mostly known for its peculiar spinnerets, which are composed of several hundred separate segments. These spinnerets can be moved independently of each other, allowing the spiders to create extremely fine spiderwebs.","(148, 10)","Varioonops is a genus of goblin spiders
+belonging to the family Oonopidae. It was first described by Norman I. Platnick in 2000. As of September 2021, it contains only one species, Varioonops cubanus.","[(38, 3)]","Varioonops is a genus of goblin spiders
+found in Australia and New Zealand.
+The genus was first described in 2004 by
+Australian arachnologist
+Dr.
+Peter J.
+O'Donnell.
+###
+### ###
+###","[(41, 3)]"
