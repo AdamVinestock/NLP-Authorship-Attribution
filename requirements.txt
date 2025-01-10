@@ -72,4 +72,5 @@ xxhash==3.4.1
 yarl==1.9.4
 numpy<2
 pyarrow<14
+spacy==3.8.3
 ipywidgets
