@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc
+from scipy.stats import gaussian_kde
+from scipy.spatial.distance import jensenshannon
 from tabulate import tabulate
 
 def extract_info_from_path(path):
@@ -54,19 +56,52 @@ def calc_diff(auth1_path, auth2_path):
     diff = abs((auth1_mean - auth2_mean)/pooled_std)
     return diff
 
+def calc_js_kde(auth1_path, auth2_path, n_points=2000):
+    """
+    Estimate JS distance between two sets of log-ppx 'response' values
+    using a kernel density estimate (KDE).
+
+    :param auth1_path: CSV path for author1 responses
+    :param auth2_path: CSV path for author2 responses
+    :param bandwidth: bw_method for gaussian_kde (can tune as needed)
+    :param n_points: number of points to sample across the min-max range
+    :return: JS distance (float).
+    """
+    df1 = pd.read_csv(auth1_path)
+    df2 = pd.read_csv(auth2_path)
+
+    resp1 = df1["response"].dropna().values
+    resp2 = df2["response"].dropna().values
+
+    # fit KDE using default bandwidth (Scott's Rule)
+    kde1 = gaussian_kde(resp1)
+    kde2 = gaussian_kde(resp2)
+
+    min_val = min(resp1.min(), resp2.min())
+    max_val = max(resp1.max(), resp2.max())
+
+    x_grid = np.linspace(min_val, max_val, n_points)
+    pdf1 = kde1(x_grid)
+    pdf2 = kde2(x_grid)
+
+    # convert densities to probability distributions
+    pdf1 /= pdf1.sum()
+    pdf2 /= pdf2.sum()
+
+    js_dist = jensenshannon(pdf1, pdf2) 
+    return js_dist**2
+
 def lm_aggregate_metrics(lm_paths):
     """
-    Compute AUC and standardized mean difference (calc_diff) for two use-cases:
+    Compute AUC, standardized mean difference (calc_diff), JS distance for two use-cases:
     1. LM separator is one of the authors.
     2. LM separator is not one of the authors.
-    
     :param paths: List paths containing the LM repsonses values over all authors
     :return: Results for both groups for each LM.
     """
-
     _, _, lm_name, _ = extract_info_from_path(lm_paths[0])
-    group1_aucs, group1_diffs = [], [] # LM in authors
-    group2_aucs, group2_diffs = [], [] # LM not in authors
+    group1_aucs, group1_diffs, group1_js = [], [], [] # LM in authors
+    group2_aucs, group2_diffs, group2_js = [], [], [] # LM not in authors
 
     for i, auth1_path in enumerate(lm_paths):       # Iterate over authors
         for j, auth2_path in enumerate(lm_paths):
@@ -80,57 +115,74 @@ def lm_aggregate_metrics(lm_paths):
             auth2_df = pd.read_csv(auth2_path)
             _, _, roc_auc = compute_roc_values(auth1_df, auth2_df)
             diff = calc_diff(auth1_path, auth2_path)
+            js_dist = calc_js_kde(auth1_path, auth2_path)
 
             # Check if the LM matches any part of the author names
             if any(keyword in author.lower() for keyword in lm_name.lower().split() for author in [author1, author2]):
                 group1_aucs.append(roc_auc)
                 group1_diffs.append(diff)
+                group1_js.append(js_dist)
             else:
                 group2_aucs.append(roc_auc)
                 group2_diffs.append(diff)
+                group2_js.append(js_dist)
+    return group1_aucs, group1_diffs, group1_js, group2_aucs, group2_diffs, group2_js
 
-    return group1_aucs, group1_diffs, group2_aucs, group2_diffs
-
-def lm_comparison_table(group1_aucs, group1_diffs, group2_aucs, group2_diffs, lm_name):
+def lm_comparison_table(group1_aucs, group1_diffs, group1_js, group2_aucs, group2_diffs, group2_js, lm_name):
     """ table preparation for per LM separator """
     avg_auc_in_authors = np.mean(group1_aucs) if group1_aucs else 0
     avg_diff_in_authors = np.mean(group1_diffs) if group1_diffs else 0
+    avg_js_in_authors = np.mean(group1_js) if group1_js else 0
+
     avg_auc_not_in_authors = np.mean(group2_aucs) if group2_aucs else 0
     avg_diff_not_in_authors = np.mean(group2_diffs) if group2_diffs else 0
-    return [lm_name, avg_auc_in_authors, avg_diff_in_authors, avg_auc_not_in_authors, avg_diff_not_in_authors]
+    avg_js_not_in_authors = np.mean(group2_js) if group2_js else 0
+    return [lm_name, avg_auc_in_authors, avg_auc_not_in_authors, avg_diff_in_authors, avg_diff_not_in_authors, avg_js_in_authors, avg_js_not_in_authors]
 
-def all_lms_comparison_table(group1_aucs, group1_diffs, group2_aucs, group2_diffs):
+def all_lms_comparison_table(group1_aucs, group1_diffs, group1_js, group2_aucs, group2_diffs, group2_js):
     """ Table preparation for aggregate over all LMs, excluding zero values """
     avg_auc_in_authors = np.mean([x for x in group1_aucs if x != 0]) if any(group1_aucs) else 0
     avg_diff_in_authors = np.mean([x for x in group1_diffs if x != 0]) if group1_diffs else 0
+    avg_js_in_authors = np.mean([x for x in group1_js if x != 0]) if group1_js else 0
+
     avg_auc_not_in_authors = np.mean([x for x in group2_aucs if x != 0]) if group2_aucs else 0
     avg_diff_not_in_authors = np.mean([x for x in group2_diffs if x != 0]) if group2_diffs else 0
-    return ["All LMs", avg_auc_in_authors, avg_diff_in_authors, avg_auc_not_in_authors, avg_diff_not_in_authors]
+    avg_js_not_in_authors = np.mean([x for x in group2_js if x != 0]) if group2_js else 0
+    return ["All LMs", avg_auc_in_authors, avg_auc_not_in_authors, avg_diff_in_authors, avg_diff_not_in_authors, avg_js_in_authors, avg_js_not_in_authors]
 
 def run_lm_comparison(paths):
     lm_comparison_results = []
-    group1_aucs_all, group1_diffs_all, group2_aucs_all, group2_diffs_all = [], [], [], []
-    for i, lm_paths in enumerate(paths):
-        lm_is_author_aucs, lm_is_author_diffs, lm_not_author_aucs, lm_not_author_diffs = lm_aggregate_metrics(lm_paths)
-        group1_aucs_all.extend(lm_is_author_aucs)
-        group1_diffs_all.extend(lm_is_author_diffs)
-        group2_aucs_all.extend(lm_not_author_aucs)
-        group2_diffs_all.extend(lm_not_author_diffs)
+    group1_aucs_all, group1_diffs_all, group1_js_all = [], [], []
+    group2_aucs_all, group2_diffs_all, group2_js_all = [], [], []
+    for lm_paths in paths:
+        # lm_is_author_aucs, lm_is_author_diffs, lm_not_author_aucs, lm_not_author_diffs = lm_aggregate_metrics(lm_paths)
+        g1_aucs, g1_diffs, g1_js, g2_aucs, g2_diffs, g2_js = lm_aggregate_metrics(lm_paths)
+        group1_aucs_all += g1_aucs
+        group1_diffs_all += g1_diffs
+        group1_js_all += g1_js
+
+        group2_aucs_all += g2_aucs
+        group2_diffs_all += g2_diffs
+        group2_js_all += g2_js
         dataset, _, lm_name, _ = extract_info_from_path(lm_paths[0])
 
-        lm_comparison_results.append(lm_comparison_table(lm_is_author_aucs, lm_is_author_diffs, lm_not_author_aucs, lm_not_author_diffs, lm_name))
+        lm_comparison_results.append(lm_comparison_table(g1_aucs, g1_diffs, g1_js, g2_aucs, g2_diffs, g2_js, lm_name))
 
     print(f"\n=== {dataset} Dataset ===")
     
     # first table (per LM separator)
-    columns = ["LM Separator", "Avg AUC (LM in Authors)", "Avg Diff (LM in Authors)", "Avg AUC (LM not in Authors)", "Avg Diff (LM not in Authors)"]
+    columns = ["LM Separator", 
+               "Avg AUC (LM in authors)", "Avg AUC (LM not in authors)",
+               "Avg Diff (LM in authors)", "Avg Diff (LM not in authors)",
+               "Avg JS (LM in authors)", "Avg JS (LM not in authors)"]
     print("\nPer-LM Comparison")
     print(tabulate(lm_comparison_results, headers=columns, tablefmt="psql"))
 
     # second table (aggregate over all LMs)
-    all_lms_table = all_lms_comparison_table(group1_aucs_all, group1_diffs_all, group2_aucs_all, group2_diffs_all)
+    all_lms_results = all_lms_comparison_table(group1_aucs_all, group1_diffs_all, group1_js_all,
+                                              group2_aucs_all, group2_diffs_all, group2_js_all)
     print("\nAll LMs Aggregate")
-    print(tabulate([all_lms_table], headers=columns, tablefmt="psql"))
+    print(tabulate([all_lms_results], headers=columns, tablefmt="psql"))
     return 
 
 def compare_human_to_llm(paths):
@@ -141,21 +193,21 @@ def compare_human_to_llm(paths):
 
     print("\n=== Full Comparison Table: Human vs Generated Texts ===")
     comparisons = [
-        ("Humans", "Llama"),
-        ("Humans", "Falcon"),
-        ("Humans", "GPT"),
-        ("Humans", "R1")]
+        ("Humans", "Llama", 0),
+        ("Humans", "Falcon", 1),
+        ("Humans", "GPT", 3),
+        ("Humans", "R1", 4)]
     columns = ["", "Llama-3.1-8B-Instruct", "Falcon-7b", "Phi-2", "DeepSeek-R1-Distill-Qwen-7B"]
     results_table = []
 
     # Iterate over each author-pair (Human vs each generated author)
-    for human_label, gen_label in comparisons:
+    for human_label, gen_label, idx in comparisons:
         row_results = [f"G0 = {human_label}\nG1 = {gen_label}"]
 
         # iterate over each LM-separator
-        for lm_path_group in paths:  
-            auth1_path = next(path for path in lm_path_group if "human_text" in path.lower())               # human author responses
-            auth2_path = next((path for path in lm_path_group if gen_label.lower() in path.lower()), None)  # LLM author responses
+        for lm_response_group in paths:  
+            auth1_path = lm_response_group[2]     # human author responses
+            auth2_path = lm_response_group[idx]   # LLM author responses
             auth1_df = pd.read_csv(auth1_path)
             auth2_df = pd.read_csv(auth2_path)
             _, _, roc_auc = compute_roc_values(auth1_df, auth2_df)
@@ -163,6 +215,31 @@ def compare_human_to_llm(paths):
         results_table.append(row_results)
     print(tabulate(results_table, headers=columns, tablefmt="grid", colalign=("center",)*(len(columns))))
 
+def compare_human_to_llm_js(paths):
+    """
+    Input: response paths for a specific domain
+    Output: creates a table of all human vs author_x JS distances for each LM separator
+    """
+
+    print("\n=== Full Comparison Table (JS Distance): Human vs Generated Texts ===")
+    comparisons = [
+        ("Humans", "Llama", 0),
+        ("Humans", "Falcon", 1),
+        ("Humans", "GPT", 3),
+        ("Humans", "R1", 4)]
+    columns = ["", "Llama-3.1-8B-Instruct", "Falcon-7b", "Phi-2", "DeepSeek-R1-Distill-Qwen-7B"]
+    results_table = []
+    # Iterate over each author-pair (Human vs each generated author)
+    for human_label, gen_label, idx in comparisons:
+        row_results = [f"G0 = {human_label}\nG1 = {gen_label}"]
+        # iterate over each LM-separator
+        for lm_response_group in paths:  
+            auth1_path = lm_response_group[2]     # human author responses
+            auth2_path = lm_response_group[idx]   # LLM author responses
+            js_dist = calc_js_kde(auth1_path, auth2_path)
+            row_results.append(f"{js_dist:.4f}")
+        results_table.append(row_results)
+    print(tabulate(results_table, headers=columns, tablefmt="grid", colalign=("center",)*(len(columns))))
 
 def compare_hist(auth1_path1, auth2_path1, auth1_path2, auth2_path2):
     """
