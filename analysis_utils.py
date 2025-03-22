@@ -321,7 +321,8 @@ def compare_human_to_llm_ci(paths, n_bootstrap=100):
             row_results.append(f"{mean_auc:.3f}±{std_auc:.3f}\n[{ci_lower:.3f}, {ci_upper:.3f}]")
         results_table.append(row_results)
 
-    print("\n=== Comparison Table with 95% CI (Human vs Generated Texts) ===")
+    dataset, _, _, _ = extract_info_from_path(paths[0][0])
+    print(f"\n=== {dataset} Dataset Comparison Table with 95% CI (Human vs Generated Texts) ===")
     print(tabulate(results_table, headers=columns, tablefmt="grid", colalign=("center",)*len(columns)))
 
 def compare_human_to_llm_js(paths):
