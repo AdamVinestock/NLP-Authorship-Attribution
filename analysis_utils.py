@@ -63,7 +63,6 @@ def calc_js_kde(auth1_path, auth2_path, n_points=2000):
 
     :param auth1_path: CSV path for author1 responses
     :param auth2_path: CSV path for author2 responses
-    :param bandwidth: bw_method for gaussian_kde (can tune as needed)
     :param n_points: number of points to sample across the min-max range
     :return: JS distance (float).
     """
@@ -296,3 +295,79 @@ def compare_hist(auth1_path1, auth2_path1, auth1_path2, auth2_path2):
     plt.suptitle(f"Dataset - {dataset_name}", fontsize=16)
     plt.tight_layout()
     plt.show()
+
+def save_ascii_table_as_png(table_str, filename="table.png", 
+                            fig_width=16, font_family="monospace", 
+                            font_size=12, line_height=0.45):
+    """
+    Saves an ASCII table string (e.g. from tabulate) as a PNG image 
+    with a white background in a monospaced font.
+    """
+    lines = table_str.count("\n") + 1
+    fig_height = line_height * lines
+
+    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
+    ax.axis("off")
+
+    ax.text(0.0, 1.0, table_str, 
+            fontfamily=font_family, 
+            fontsize=font_size, 
+            va="top")
+
+    plt.savefig(filename, dpi=300, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+
+def run_lm_comparison_save_img(paths, save_prefix=None):
+    lm_comparison_results = []
+    group1_aucs_all, group1_diffs_all, group1_js_all = [], [], []
+    group2_aucs_all, group2_diffs_all, group2_js_all = [], [], []
+    for lm_paths in paths:
+        g1_aucs, g1_diffs, g1_js, g2_aucs, g2_diffs, g2_js = lm_aggregate_metrics(lm_paths)
+        group1_aucs_all += g1_aucs
+        group1_diffs_all += g1_diffs
+        group1_js_all += g1_js
+
+        group2_aucs_all += g2_aucs
+        group2_diffs_all += g2_diffs
+        group2_js_all += g2_js
+
+        dataset, _, lm_name, _ = extract_info_from_path(lm_paths[0])
+        lm_comparison_results.append(
+            lm_comparison_table(g1_aucs, g1_diffs, g1_js, 
+                                g2_aucs, g2_diffs, g2_js, 
+                                lm_name)
+        )
+    print(f"\n=== {dataset} Dataset ===")
+    
+    # first table (per LM separator)
+    columns = [
+        "LM Separator", 
+        "Avg AUC (LM in authors)", "Avg AUC (LM not in authors)",
+        "Avg Diff (LM in authors)", "Avg Diff (LM not in authors)",
+        "Avg JS (LM in authors)", "Avg JS (LM not in authors)"
+    ]
+
+    print("\nPer-LM Comparison")
+    per_lm_table_str = tabulate(lm_comparison_results, headers=columns, tablefmt="psql")
+    print(per_lm_table_str)
+
+    # second table (aggregate over all LMs)
+    all_lms_results = all_lms_comparison_table(
+        group1_aucs_all, group1_diffs_all, group1_js_all,
+        group2_aucs_all, group2_diffs_all, group2_js_all
+    )
+    print("\nAll LMs Aggregate")
+    all_lms_table_str = tabulate([all_lms_results], headers=columns, tablefmt="psql")
+    print(all_lms_table_str)
+    if save_prefix is not None:
+        save_ascii_table_as_png(
+            per_lm_table_str,
+            filename=f"images/{save_prefix}_per_lm.png",
+            fig_width=20  # widen if needed
+        )
+        save_ascii_table_as_png(
+            all_lms_table_str,
+            filename=f"images/{save_prefix}_agg.png",
+            fig_width=16
+        )
+    return
