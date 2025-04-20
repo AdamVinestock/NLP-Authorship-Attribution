@@ -90,7 +90,7 @@ def calc_js_kde(auth1_path, auth2_path, n_points=2000):
 
 def optimal_error_exponent(path_f0, path_f1, n_points=2000):
     """
-    Calculate the optimal error exponent (KL Divergence) as per Neyman–Pearson lemma
+    Calculate the optimal error exponent (KL Divergence) as per Chernoff–Stein lemma 
     path_f0: CSV of responses for H0 (LM matches author)
     path_f1: CSV of responses for H1 (LM doesn't match authors)
     """
@@ -211,10 +211,10 @@ def run_lm_comparison(paths):
     print(f"\n=== {dataset} Dataset ===")
 
     columns = ["LM Separator",
-               "Avg AUC (LM in)", "Avg AUC (LM out)",
-               "Avg Diff (LM in)", "Avg Diff (LM out)",
-               "Avg JS (LM in)", "Avg JS (LM out)",
-               "Avg OE (LM in)", "Avg OE (LM out)"]
+               "AUC (LM in)", "AUC (LM out)",
+               "Diff (LM in)", "Diff (LM out)",
+               "JS (LM in)", "JS (LM out)",
+               "OE (LM in)", "OE (LM out)"]
 
     # first table (per LM separator)
     print("\nPer-LM Comparison")
@@ -285,7 +285,7 @@ def compare_human_to_llm(paths):
 
     # Iterate over each author-pair (Human vs each generated author)
     for human_label, gen_label, idx in comparisons:
-        row_results = [f"G0 = {human_label}\nG1 = {gen_label}"]
+        row_results = [f"G1 = {human_label}\nG0 = {gen_label}"]
 
         # iterate over each LM-separator
         for lm_response_group in paths:  
@@ -311,7 +311,7 @@ def compare_human_to_llm_ci(paths, n_bootstrap=100):
     columns = ["", "Llama-3.1-8B-Instruct", "Falcon-7b", "Phi-2", "DeepSeek-R1-Distill-Qwen-7B"]
     results_table = []
     for human_label, gen_label, idx in comparisons:
-        row_results = [f"G0 = {human_label}\nG1 = {gen_label}"]
+        row_results = [f"G1 = {human_label}\nG0 = {gen_label}"]
         for lm_response_group in tqdm(paths, desc=f"{gen_label} comparisons"):
             auth1_path = lm_response_group[2]   # human responses
             auth2_path = lm_response_group[idx]  # LLM responses
@@ -341,7 +341,7 @@ def compare_human_to_llm_js(paths):
     results_table = []
     # Iterate over each author-pair (Human vs each generated author)
     for human_label, gen_label, idx in comparisons:
-        row_results = [f"G0 = {human_label}\nG1 = {gen_label}"]
+        row_results = [f"G1 = {human_label}\nG0 = {gen_label}"]
         # iterate over each LM-separator
         for lm_response_group in paths:  
             auth1_path = lm_response_group[2]     # human author responses
@@ -350,6 +350,85 @@ def compare_human_to_llm_js(paths):
             row_results.append(f"{js_dist:.4f}")
         results_table.append(row_results)
     print(tabulate(results_table, headers=columns, tablefmt="grid", colalign=("center",)*(len(columns))))
+
+def compare_human_to_llm_oe(paths, n_points=2000):
+    """
+    Similar to compare_human_to_llm_js(), but uses the Chernoff–Stein lemma exponent
+    (KL divergence) via optimal_error_exponent() to compare Humans vs. LLM.
+
+    :param paths: The list of list-of-paths structure, e.g. wiki_paths
+    :param n_points: Number of discretization points for kernel density
+    """
+    print("\n=== Full Comparison Table (Optimal Error Exponent): Human vs Generated Texts ===")
+
+    comparisons = [
+        ("Humans", "Llama", 0),
+        ("Humans", "Falcon", 1),
+        ("Humans", "GPT", 3),
+        ("Humans", "R1", 4)
+    ]
+    columns = ["", "Llama-3.1-8B-Instruct", "Falcon-7b", "Phi-2", "DeepSeek-R1-Distill-Qwen-7B"]
+    results_table = []
+    for human_label, gen_label, idx in comparisons:
+        row_results = [f"G1 = {human_label}\nG0 = {gen_label}"]
+        for lm_response_group in paths:  
+            auth1_path = lm_response_group[2]     # human
+            auth2_path = lm_response_group[idx]   # LLM
+            # compute OE
+            oe_val = optimal_error_exponent(auth1_path, auth2_path, n_points=n_points)
+            row_results.append(f"{oe_val:.4f}")
+        results_table.append(row_results)
+
+    print(tabulate(results_table, headers=columns, tablefmt="grid", colalign=("center",)*(len(columns))))
+
+
+############################################################
+### Methods for comparing lm vs other Author separations ###
+############################################################
+
+def compare_author_vs_others(paths, metric='js'):
+    """
+    Creates a table comparing the average metric of each author against all other authors using a selected metric.
+
+    :param paths: Nested list of response paths organized by LM separators
+    :param metric: Metric to calculate ('js', 'auc', 'optimal_error')
+    """
+    metrics_map = {
+        'js': calc_js_kde,
+        'auc': compute_roc_values,
+        'optimal_error': optimal_error_exponent
+    }
+    author_labels = ['Llama3.1', 'Falcon', 'Human', 'GPT', 'R1']
+    separator_labels = ["Llama-3.1-8B-Instruct", "Falcon-7b", "Phi-2", "DeepSeek-R1-Distill-Qwen-7B"]
+    columns = ["Author vs Others"] + separator_labels
+    results_table = []
+    for author_idx, author_label in enumerate(author_labels):
+        row_results = [f"{author_label} vs Others"]
+        for separator_group in paths:
+            metrics = []
+            for other_idx in range(len(author_labels)):
+                if other_idx != author_idx:
+                    author_path = separator_group[author_idx]
+                    other_author_path = separator_group[other_idx]
+                    if metric == 'auc':
+                        auth1_df = pd.read_csv(author_path)
+                        auth2_df = pd.read_csv(other_author_path)
+                        _, _, metric_value = metrics_map[metric](auth1_df, auth2_df)
+                    else:
+                        metric_value = metrics_map[metric](author_path, other_author_path)
+                    metrics.append(metric_value)
+            avg_metric = sum(metrics) / len(metrics)
+            row_results.append(f"{avg_metric:.4f}")
+        results_table.append(row_results)
+    results_df = pd.DataFrame(results_table, columns=columns)
+    print(f"\n=== Average Author Separation using {metric.upper()} ===")
+    print(tabulate(results_table, headers=columns, tablefmt="grid", colalign=("center",)*(len(columns))))
+    # print(results_df.to_markdown(index=False))
+
+############################################################################
+### Methods for printing responses histogram comparisons/saving tables  ####
+############################################################################
+
 
 def compare_hist(auth1_path1, auth2_path1, auth1_path2, auth2_path2):
     """
@@ -482,3 +561,173 @@ def run_lm_comparison_save_img(paths, save_prefix=None):
             fig_width=16
         )
     return
+
+def compare_separators(dataset_paths, author1, author2):
+    separator_names = ['Llama3.1', 'Falcon', 'Phi-2', 'DeepSeek-R1']
+    num_separators = len(separator_names)
+
+    fig, axs = plt.subplots(2, num_separators, figsize=(5 * num_separators, 10))
+
+    for idx, separator in enumerate(separator_names):
+        separator_paths = dataset_paths[idx]
+        dataset_name, _, model_name, _ = extract_info_from_path(separator_paths[0])
+        auth1_path, auth2_path = None, None
+        for path in separator_paths:
+            _, author, _, _ = extract_info_from_path(path)
+            if author1.lower() in author.lower():
+                auth1_path = path
+            elif author2.lower() in author.lower():
+                auth2_path = path
+
+        if auth1_path is None or auth2_path is None:
+            raise ValueError(f"Paths for authors '{author1}' or '{author2}' not found in {separator}.")
+
+        auth1_df = pd.read_csv(auth1_path)
+        auth2_df = pd.read_csv(auth2_path)
+        fpr, tpr, roc_auc = compute_roc_values(auth1_df, auth2_df)
+
+        # plot histograms
+        bins = np.arange(min(auth1_df["response"].min(), auth2_df["response"].min()),
+                         max(auth1_df["response"].max(), auth2_df["response"].max()), 0.1)
+
+        axs[0, idx].hist(auth1_df["response"], bins=bins, alpha=0.5, label=author1)
+        axs[0, idx].hist(auth2_df["response"], bins=bins, alpha=0.5, label=author2)
+        axs[0, idx].set_title(f"{separator} separator")
+        axs[0, idx].set_xlabel('Log-perplexity')
+        axs[0, idx].set_ylabel('Frequency')
+        axs[0, idx].legend()
+
+        # plot ROC curve
+        axs[1, idx].plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC (AUC={roc_auc:.4f})')
+        axs[1, idx].plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+        axs[1, idx].set_xlabel('False Positive Rate')
+        axs[1, idx].set_ylabel('True Positive Rate')
+        axs[1, idx].legend(loc='lower right')
+        axs[1, idx].grid(True, linestyle='--', linewidth=0.5)
+
+    plt.suptitle(f"Comparison of Separators for {author1} vs {author2} ({dataset_name} dataset)", fontsize=16)
+    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.show()
+
+def compare_separators_with_kl(dataset_paths, author1, author2):
+    separator_names = ['Llama3.1', 'Falcon', 'Phi-2', 'DeepSeek-R1']
+    num_separators = len(separator_names)
+    fig, axs = plt.subplots(2, num_separators, figsize=(5 * num_separators, 10))
+    kl_values = []
+    for idx, separator in enumerate(separator_names):
+        separator_paths = dataset_paths[idx]
+        dataset_name, _, model_name, _ = extract_info_from_path(separator_paths[0])
+
+        auth1_path, auth2_path = None, None
+        for path in separator_paths:
+            _, author, _, _ = extract_info_from_path(path)
+            if author1.lower() in author.lower():
+                auth1_path = path
+            elif author2.lower() in author.lower():
+                auth2_path = path
+
+        if auth1_path is None or auth2_path is None:
+            raise ValueError(f"Paths for authors '{author1}' or '{author2}' not found in {separator}.")
+
+        auth1_df = pd.read_csv(auth1_path)
+        auth2_df = pd.read_csv(auth2_path)
+
+        bins = np.arange(min(auth1_df["response"].min(), auth2_df["response"].min()),
+                         max(auth1_df["response"].max(), auth2_df["response"].max()), 0.1)
+
+        # Histograms
+        axs[0, idx].hist(auth1_df["response"], bins=bins, alpha=0.5, label=author1)
+        axs[0, idx].hist(auth2_df["response"], bins=bins, alpha=0.5, label=author2)
+        axs[0, idx].set_title(f"{separator} separator")
+        axs[0, idx].set_xlabel('Log-perplexity')
+        axs[0, idx].set_ylabel('Frequency')
+        axs[0, idx].legend()
+
+        # KL Divergence plot
+        kl_divergence = optimal_error_exponent_viz(
+            auth1_path, auth2_path, axs[1, idx], author1, author2, f"{separator} separator"
+        )
+        kl_values.append(kl_divergence)
+
+    plt.suptitle(f"Comparison using Optimal Error Exponent (KL Divergence)\n{author1} vs {author2} ({dataset_name})", fontsize=16)
+    plt.tight_layout(rect=[0, 0, 1, 0.94])
+    plt.show()
+
+    # Summary bar plot for KL divergence values
+    plt.figure(figsize=(10, 5))
+    plt.bar(separator_names, kl_values, color='skyblue')
+    plt.ylabel('KL Divergence (Optimal Error Exponent)')
+    plt.title('Comparison of KL Divergence Across Separators')
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.show()
+
+def optimal_error_exponent_viz(path_f0, path_f1, ax, author1, author2, title, n_points=2000):
+    data_f0 = pd.read_csv(path_f0)["response"].dropna().values
+    data_f1 = pd.read_csv(path_f1)["response"].dropna().values
+    kde_f0 = gaussian_kde(data_f0)
+    kde_f1 = gaussian_kde(data_f1)
+    x_min, x_max = min(data_f0.min(), data_f1.min()), max(data_f0.max(), data_f1.max())
+    x = np.linspace(x_min, x_max, n_points)
+    pdf_f0 = kde_f0(x)
+    pdf_f1 = kde_f1(x)
+
+    # normalize PDFs
+    pdf_f0 /= pdf_f0.sum()
+    pdf_f1 /= pdf_f1.sum()
+
+    # calc KL Divergence
+    pdf_f0 += 1e-10
+    pdf_f1 += 1e-10
+    kl_divergence = entropy(pdf_f0, pdf_f1)
+
+    # calc mean and std
+    mean_f0, std_f0 = data_f0.mean(), data_f0.std()
+    mean_f1, std_f1 = data_f1.mean(), data_f1.std()
+
+    # plot
+    ax.plot(x, pdf_f0, label=f"{author1} (mean={mean_f0:.2f}, std={std_f0:.2f})")
+    ax.plot(x, pdf_f1, label=f"{author2} (mean={mean_f1:.2f}, std={std_f1:.2f})")
+    ax.fill_between(x, pdf_f0, pdf_f1, color='grey', alpha=0.2)
+    ax.set_title(f"{title}\nOptimal Error Exp. (KL Divergence): {kl_divergence:.4f}")
+    ax.set_xlabel("Log-Perplexity")
+    ax.set_ylabel("Density")
+    ax.legend()
+    return kl_divergence
+
+def compare_hist_oe(auth1_path1, auth2_path1, auth1_path2, auth2_path2):
+    auth1_df1 = pd.read_csv(auth1_path1)
+    auth2_df1 = pd.read_csv(auth2_path1)
+    auth1_df2 = pd.read_csv(auth1_path2)
+    auth2_df2 = pd.read_csv(auth2_path2)
+
+    dataset_name, author1, model1, _ = extract_info_from_path(auth1_path1)
+    _, _, model2, _ = extract_info_from_path(auth1_path2)
+    _, author2, _, _ = extract_info_from_path(auth2_path2)
+
+    fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+    bins = np.arange(min(auth1_df1["response"].min(), auth2_df1["response"].min(),
+                          auth1_df2["response"].min(), auth2_df2["response"].min()),
+                     max(auth1_df1["response"].max(), auth2_df1["response"].max(),
+                         auth1_df2["response"].max(), auth2_df2["response"].max()), 0.1)
+
+    axs[0, 0].hist(auth1_df1["response"], bins=bins, alpha=0.5, label=author1)
+    axs[0, 0].hist(auth2_df1["response"], bins=bins, alpha=0.5, label=author2)
+    axs[0, 0].set_title(f"LM response generator - {model1}")
+    axs[0, 0].set_xlabel('Log-perplexity')
+    axs[0, 0].set_ylabel('Frequency')
+    axs[0, 0].legend()
+
+    axs[0, 1].hist(auth1_df2["response"], bins=bins, alpha=0.5, label=author1)
+    axs[0, 1].hist(auth2_df2["response"], bins=bins, alpha=0.5, label=author2)
+    axs[0, 1].set_title(f"LM response generator - {model2}")
+    axs[0, 1].set_xlabel('Log-perplexity')
+    axs[0, 1].set_ylabel('Frequency')
+    axs[0, 1].legend()
+
+    # Bottom plots: Optimal Error Exponent visualizations
+    optimal_error_exponent_viz(auth1_path1, auth2_path1, axs[1, 0], author1, author2, f"{model1} Optimal Error Exponent")
+    optimal_error_exponent_viz(auth1_path2, auth2_path2, axs[1, 1], author1, author2, f"{model2} Optimal Error Exponent")
+
+    plt.suptitle(f"Dataset - {dataset_name}", fontsize=16)
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.show()
