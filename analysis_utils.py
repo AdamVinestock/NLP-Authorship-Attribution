@@ -1,11 +1,14 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.metrics import roc_curve, auc, roc_auc_score
 from scipy.stats import gaussian_kde, entropy
 from scipy.spatial.distance import jensenshannon
 from tabulate import tabulate
 from tqdm import tqdm
+import itertools
+
 
 def extract_info_from_path(path):
     """
@@ -118,7 +121,7 @@ def lm_aggregate_metrics(lm_paths):
     Compute AUC, standardized mean difference (calc_diff), JS distance for two use-cases:
     1. LM separator is one of the authors.
     2. LM separator is not one of the authors.
-    :param paths: List paths containing the LM repsonses values over all authors
+    :param paths: List paths containing the LM responses values over all authors
     :return: Results for both groups for each LM.
     """
     _, _, lm_name, _ = extract_info_from_path(lm_paths[0])
@@ -509,33 +512,34 @@ def save_ascii_table_as_png(table_str, filename="table.png",
 
 def run_lm_comparison_save_img(paths, save_prefix=None):
     lm_comparison_results = []
-    group1_aucs_all, group1_diffs_all, group1_js_all = [], [], []
-    group2_aucs_all, group2_diffs_all, group2_js_all = [], [], []
+    group1_aucs_all, group1_diffs_all, group1_js_all, group1_oe_all = [], [], [], []
+    group2_aucs_all, group2_diffs_all, group2_js_all, group2_oe_all = [], [], [], []
     for lm_paths in paths:
-        g1_aucs, g1_diffs, g1_js, g2_aucs, g2_diffs, g2_js = lm_aggregate_metrics(lm_paths)
+        g1_aucs, g1_diffs, g1_js, g1_oe,  g2_aucs, g2_diffs, g2_js, g2_oe = lm_aggregate_metrics(lm_paths)
         group1_aucs_all += g1_aucs
         group1_diffs_all += g1_diffs
         group1_js_all += g1_js
+        group1_oe_all += g1_oe
 
         group2_aucs_all += g2_aucs
         group2_diffs_all += g2_diffs
         group2_js_all += g2_js
+        group2_oe_all += g2_oe
 
         dataset, _, lm_name, _ = extract_info_from_path(lm_paths[0])
         lm_comparison_results.append(
-            lm_comparison_table(g1_aucs, g1_diffs, g1_js, 
-                                g2_aucs, g2_diffs, g2_js, 
+            lm_comparison_table(g1_aucs, g1_diffs, g1_js, g1_oe,
+                                g2_aucs, g2_diffs, g2_js, g2_oe,
                                 lm_name)
         )
     print(f"\n=== {dataset} Dataset ===")
     
     # first table (per LM separator)
-    columns = [
-        "LM Separator", 
-        "Avg AUC (LM in authors)", "Avg AUC (LM not in authors)",
-        "Avg Diff (LM in authors)", "Avg Diff (LM not in authors)",
-        "Avg JS (LM in authors)", "Avg JS (LM not in authors)"
-    ]
+    columns = ["LM Separator",
+            "AUC (LM in)", "AUC (LM out)",
+            "Diff (LM in)", "Diff (LM out)",
+            "JS (LM in)", "JS (LM out)",
+            "OE (LM in)", "OE (LM out)"]
 
     print("\nPer-LM Comparison")
     per_lm_table_str = tabulate(lm_comparison_results, headers=columns, tablefmt="psql")
@@ -543,8 +547,8 @@ def run_lm_comparison_save_img(paths, save_prefix=None):
 
     # second table (aggregate over all LMs)
     all_lms_results = all_lms_comparison_table(
-        group1_aucs_all, group1_diffs_all, group1_js_all,
-        group2_aucs_all, group2_diffs_all, group2_js_all
+        group1_aucs_all, group1_diffs_all, group1_js_all, group1_oe_all,
+        group2_aucs_all, group2_diffs_all, group2_js_all, group2_oe_all
     )
     print("\nAll LMs Aggregate")
     all_lms_table_str = tabulate([all_lms_results], headers=columns, tablefmt="psql")
@@ -553,7 +557,7 @@ def run_lm_comparison_save_img(paths, save_prefix=None):
         save_ascii_table_as_png(
             per_lm_table_str,
             filename=f"images/{save_prefix}_per_lm.png",
-            fig_width=20  # widen if needed
+            fig_width=20  
         )
         save_ascii_table_as_png(
             all_lms_table_str,
@@ -731,3 +735,91 @@ def compare_hist_oe(auth1_path1, auth2_path1, auth1_path2, auth2_path2):
     plt.suptitle(f"Dataset - {dataset_name}", fontsize=16)
     plt.tight_layout(rect=[0, 0, 1, 0.95])
     plt.show()
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+#  HEAT‑MAP PLOTS
+# ──────────────────────────────────────────────────────────────────────────────
+
+# 1.  Separating 2 authors   (detector ∈ authors   vs   detector ∉ authors)
+
+def run_lm_comparison_heatmap(paths, save_prefix=None):
+    """
+    Prints/returns a table and heatmaps for each metric, with 'aggregate' row (phi-2 excluded).
+    Prints domain, and number of pairs per row.
+    """
+    # Extract domain name for title
+    dataset, _, _, _ = extract_info_from_path(paths[0][0])
+    print(f"\n=== {dataset} Domain ===")
+
+    # Collect rows, keep track of phi-2 row index
+    all_rows = []
+    phi2_index = None
+    for i, lm_paths in enumerate(paths):
+        _, _, lm_name, _ = extract_info_from_path(lm_paths[0])
+        (g1_aucs, _, g1_js, g1_oe,
+         g2_aucs, _, g2_js, g2_oe) = lm_aggregate_metrics(lm_paths)
+        auc_in  = np.mean(g1_aucs) if g1_aucs else np.nan
+        auc_out = np.mean(g2_aucs) if g2_aucs else np.nan
+        js_in   = np.mean(g1_js) if g1_js else np.nan
+        js_out  = np.mean(g2_js) if g2_js else np.nan
+        oe_in   = np.mean(g1_oe) if g1_oe else np.nan
+        oe_out  = np.mean(g2_oe) if g2_oe else np.nan
+        n_in, n_out = len(g1_aucs), len(g2_aucs)
+        all_rows.append([
+            lm_name, auc_in, auc_out, js_in, js_out, oe_in, oe_out, n_in, n_out
+        ])
+        if "phi" in lm_name.lower():
+            phi2_index = i
+
+    # Reorder so phi-2 is last
+    if phi2_index is not None:
+        phi2_row = all_rows.pop(phi2_index)
+        all_rows.append(phi2_row)
+
+    # Aggregate row (exclude phi-2 from means)
+    rows_for_agg = all_rows[:-1] if phi2_index is not None else all_rows
+    agg = ["Aggregate"]
+    for col in range(1, 7):
+        col_vals = [row[col] for row in rows_for_agg if not np.isnan(row[col])]
+        agg.append(np.mean(col_vals) if col_vals else np.nan)
+    # Pair counts for aggregate (sums)
+    agg.append(int(np.nansum([row[7] for row in rows_for_agg])))
+    agg.append(int(np.nansum([row[8] for row in rows_for_agg])))
+    all_rows.append(agg)
+
+    # DataFrame for main results
+    columns = [
+        "LM Separator", "AUC (∈authors)", "AUC (∉authors)",
+        "JS (∈authors)", "JS (∉authors)",
+        "OE (∈authors)", "OE (∉authors)",
+        "#Pairs (∈authors)", "#Pairs (∉authors)"
+    ]
+    df = pd.DataFrame(all_rows, columns=columns)
+    print("\nMain Results Table (Aggregate excludes phi-2):")
+    print(df.to_markdown(index=False, floatfmt=".3f"))
+
+    # Plot heatmaps for each metric (aggregate last row, phi-2 before that)
+    fig, axs = plt.subplots(1, 3, figsize=(15, len(df)*0.6+2))
+    for idx, (col_in, col_out, cmap, title) in enumerate([
+        ("AUC (∈authors)", "AUC (∉authors)", "Blues", "AUC"),
+        ("JS (∈authors)", "JS (∉authors)", "Reds", "JS"),
+        ("OE (∈authors)", "OE (∉authors)", "Purples", "OE")
+    ]):
+        vals = np.array([
+            df[col_in].astype(float).values,
+            df[col_out].astype(float).values
+        ]).T
+        sns.heatmap(vals, annot=True, fmt=".3f", cmap=cmap,
+                    yticklabels=df["LM Separator"],
+                    xticklabels=["∈authors", "∉authors"], ax=axs[idx])
+        axs[idx].set_title(title)
+    plt.suptitle(f"{dataset} Domain – Separation Metrics (Aggregate excludes phi-2)", fontsize=14)
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    if save_prefix:
+        plt.savefig(f"{save_prefix}_all_metrics_heatmap.png", dpi=180)
+    plt.show()
+
+    return df
+
+
