@@ -892,37 +892,359 @@ def compare_human_to_llm_appendix_oe(paths):
     
     return results_table
 
-def run_lm_comparison_appendix_js_oe(paths):
+def run_lm_comparison_appendix_js(paths, save_prefix=None):
     """
-    Generate detailed JS and OE tables for appendix
-    """
-    lm_js_results = []
-    lm_oe_results = []
+    Heatmap showing Jensen-Shannon divergence for LM separator analysis.
+    Compares when LM separator is one of the authors vs. not one of the authors.
+    Higher JS values indicate less similar distributions (better separation).
     
-    for lm_paths in paths:
+    Note: Uses Standard Error (SE = std/√n) instead of bootstrap for computational efficiency.
+    SE measures uncertainty in the mean estimate, consistent with AUC analysis interpretation.
+    """
+    dataset, _, _, _ = extract_info_from_path(paths[0][0])
+    
+    all_rows = []
+    phi2_index = None
+    
+    for i, lm_paths in enumerate(paths):
+        _, _, lm_name, _ = extract_info_from_path(lm_paths[0])
         g1_aucs, g1_diffs, g1_js, g1_oe, g2_aucs, g2_diffs, g2_js, g2_oe = lm_aggregate_metrics(lm_paths)
         
-        dataset, _, lm_name, _ = extract_info_from_path(lm_paths[0])
+        if g1_js:
+            js_in = np.mean(g1_js)
+            se_in = np.std(g1_js, ddof=1) / np.sqrt(len(g1_js))  # Standard Error
+            n_in = len(g1_js)
+        else:
+            js_in, se_in, n_in = np.nan, np.nan, 0
+            
+        if g2_js:
+            js_out = np.mean(g2_js)
+            se_out = np.std(g2_js, ddof=1) / np.sqrt(len(g2_js))  # Standard Error
+            n_out = len(g2_js)
+        else:
+            js_out, se_out, n_out = np.nan, np.nan, 0
         
-        # JS results
-        avg_js_in = np.mean(g1_js) if g1_js else np.nan
-        avg_js_out = np.mean(g2_js) if g2_js else np.nan
-        lm_js_results.append([lm_name, f"{avg_js_in:.4f}", f"{avg_js_out:.4f}"])
-        
-        # OE results
-        avg_oe_in = np.mean(g1_oe) if g1_oe else np.nan
-        avg_oe_out = np.mean(g2_oe) if g2_oe else np.nan
-        lm_oe_results.append([lm_name, f"{avg_oe_in:.4f}", f"{avg_oe_out:.4f}"])
+        all_rows.append([lm_name, js_in, se_in, js_out, se_out, n_in, n_out])
+        if "phi" in lm_name.lower():
+            phi2_index = i
 
-    print(f"\n=== {dataset} Dataset - Appendix: Detailed JS Distance Results ===")
-    js_columns = ["LM Separator", "JS (LM ∈ authors)", "JS (LM ∉ authors)"]
-    print(tabulate(lm_js_results, headers=js_columns, tablefmt="grid"))
+    if phi2_index is not None:
+        phi2_row = all_rows.pop(phi2_index)
+        all_rows.append(phi2_row)
 
-    print(f"\n=== {dataset} Dataset - Appendix: Detailed OE Results ===")
-    oe_columns = ["LM Separator", "OE (LM ∈ authors)", "OE (LM ∉ authors)"]
-    print(tabulate(lm_oe_results, headers=oe_columns, tablefmt="grid"))
+    rows_for_agg = all_rows[:-1] if phi2_index is not None else all_rows
     
-    return lm_js_results, lm_oe_results
+    agg_js_in_vals = [row[1] for row in rows_for_agg if not np.isnan(row[1])]
+    agg_se_in_vals = [row[2] for row in rows_for_agg if not np.isnan(row[2])]
+    agg_js_out_vals = [row[3] for row in rows_for_agg if not np.isnan(row[3])]
+    agg_se_out_vals = [row[4] for row in rows_for_agg if not np.isnan(row[4])]
+    agg_n_in = sum([row[5] for row in rows_for_agg])
+    agg_n_out = sum([row[6] for row in rows_for_agg])
+    
+    agg_js_in = np.mean(agg_js_in_vals) if agg_js_in_vals else np.nan
+    agg_se_in = np.sqrt(np.mean(np.array(agg_se_in_vals)**2)) if agg_se_in_vals else np.nan  # Pooled SE
+    agg_js_out = np.mean(agg_js_out_vals) if agg_js_out_vals else np.nan
+    agg_se_out = np.sqrt(np.mean(np.array(agg_se_out_vals)**2)) if agg_se_out_vals else np.nan  # Pooled SE
+    
+    all_rows.append(["Aggregate", agg_js_in, agg_se_in, agg_js_out, agg_se_out, agg_n_in, agg_n_out])
+
+    df = pd.DataFrame(all_rows, columns=["LM Separator", "JS_in", "SE_in", "JS_out", "SE_out", "N_in", "N_out"])
+    
+    print(f"\n=== {dataset} Dataset - Appendix: Jensen-Shannon Divergence Analysis ===")
+    print("JS Distance: LM ∈ Authors vs LM ∉ Authors (higher = more seperable)\n")
+    
+    table_rows = []
+    for _, row in df.iterrows():
+        lm_name = row["LM Separator"]
+        if not np.isnan(row["JS_in"]):
+            js_in_str = f"{row['JS_in']:.4f} (±{row['SE_in']:.4f})"
+            n_in_str = f"{int(row['N_in'])}"
+        else:
+            js_in_str = "N/A"
+            n_in_str = "0"
+        js_out_str = f"{row['JS_out']:.4f} (±{row['SE_out']:.4f})"
+        n_out_str = f"{int(row['N_out'])}"
+        table_rows.append([lm_name, js_in_str, js_out_str, n_in_str, n_out_str])
+    
+    print(tabulate(table_rows, 
+                   headers=["LM Separator", "JS (LM ∈ authors)", "JS (LM ∉ authors)", 
+                           "#Pairs (∈authors)", "#Pairs (∉authors)"], 
+                   tablefmt="grid"))
+
+    fig, ax = plt.subplots(1, 1, figsize=(8, len(df)*0.8))
+    
+    heatmap_data = np.array([
+        df["JS_in"].values,
+        df["JS_out"].values
+    ]).T
+    
+    annotations = []
+    for i, (_, row) in enumerate(df.iterrows()):
+        if not np.isnan(row["JS_in"]):
+            ann_in = f"{row['JS_in']:.4f}\n±{row['SE_in']:.4f}"
+        else:
+            ann_in = "N/A"
+        ann_out = f"{row['JS_out']:.4f}\n±{row['SE_out']:.4f}"
+        annotations.append([ann_in, ann_out])
+    
+    cmap = plt.cm.RdYlGn  # Higher JS (green) is better separation
+    mask = np.isnan(heatmap_data)
+    
+    # Determine reasonable vmin/vmax from data for better color scaling
+    valid_data = heatmap_data[~mask]
+    if len(valid_data) > 0:
+        vmin = max(0, np.percentile(valid_data, 1))
+        vmax = np.percentile(valid_data, 99)
+    else:
+        vmin, vmax = 0, 0.1
+    
+    im = ax.imshow(heatmap_data, cmap=cmap, aspect='auto', vmin=vmin, vmax=vmax)
+    
+    cbar = plt.colorbar(im, ax=ax, shrink=0.8)
+    cbar.set_label('JS Distance', rotation=270, labelpad=20, fontsize=12)
+    
+    ax.set_xticks(range(2))
+    ax.set_xticklabels(['LM ∈ authors', 'LM ∉ authors'], fontsize=11)
+    ax.set_yticks(range(len(df)))
+    
+    clean_names = []
+    for name in df["LM Separator"]:
+        if name == "Aggregate":
+            clean_names.append("Aggregate")
+        elif "llama" in name.lower():
+            clean_names.append("Llama-3.1-8B")
+        elif "falcon" in name.lower():
+            clean_names.append("Falcon-7B")
+        elif "phi" in name.lower():
+            clean_names.append("Phi-2")
+        elif "deepseek" in name.lower():
+            clean_names.append("DeepSeek-R1")
+        else:
+            clean_names.append(name)
+    
+    ax.set_yticklabels(clean_names, fontsize=11)
+    
+    for i in range(len(df)):
+        for j in range(2):
+            if not mask[i, j]:
+                ax.text(j, i, annotations[i][j], 
+                       ha='center', va='center', 
+                       fontsize=10, fontweight='bold',
+                       color='black')
+            else:
+                ax.text(j, i, annotations[i][j], 
+                       ha='center', va='center', 
+                       fontsize=10, fontweight='bold', color='gray')
+    
+    title_text = f'{dataset} Dataset: LM Separator Performance\n(Jensen-Shannon Distance ± Standard Error)'
+    ax.set_title(title_text, fontsize=14, fontweight='bold', pad=20)
+    
+    ax.set_xticks(np.arange(-0.5, 2, 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(df), 1), minor=True)
+    ax.grid(which='minor', color='white', linestyle='-', linewidth=2)
+    
+    info_text = "Aggregate excludes Phi-2. Higher JS values indicate more seperable distributions."
+    plt.figtext(0.5, 0.01, info_text, ha='center', fontsize=10, 
+                style='italic', wrap=True)
+    
+    plt.tight_layout()
+    plt.subplots_adjust(bottom=0.15) 
+    
+    if save_prefix:
+        plt.savefig(f"images/{save_prefix}_experiment1_js_heatmap.png", 
+                   dpi=300, bbox_inches='tight', facecolor='white')
+    
+    plt.show()
+    
+    return df, table_rows
+
+
+def run_lm_comparison_appendix_oe(paths, save_prefix=None):
+    """
+    Heatmap showing Optimal Error Exponent (KL divergence) for LM separator analysis.
+    Compares when LM separator is one of the authors vs. not one of the authors.
+    Higher OE values indicate more different distributions (better separation).
+    
+    Note: Uses Standard Error (SE = std/√n) instead of bootstrap for computational efficiency.
+    SE measures uncertainty in the mean estimate, consistent with AUC analysis interpretation.
+    """
+    dataset, _, _, _ = extract_info_from_path(paths[0][0])
+    
+    all_rows = []
+    phi2_index = None
+    
+    for i, lm_paths in enumerate(paths):
+        _, _, lm_name, _ = extract_info_from_path(lm_paths[0])
+        g1_aucs, g1_diffs, g1_js, g1_oe, g2_aucs, g2_diffs, g2_js, g2_oe = lm_aggregate_metrics(lm_paths)
+        
+        if g1_oe:
+            oe_in = np.mean(g1_oe)
+            se_in = np.std(g1_oe, ddof=1) / np.sqrt(len(g1_oe))  # Standard Error
+            n_in = len(g1_oe)
+        else:
+            oe_in, se_in, n_in = np.nan, np.nan, 0
+            
+        if g2_oe:
+            oe_out = np.mean(g2_oe)
+            se_out = np.std(g2_oe, ddof=1) / np.sqrt(len(g2_oe))  # Standard Error
+            n_out = len(g2_oe)
+        else:
+            oe_out, se_out, n_out = np.nan, np.nan, 0
+        
+        all_rows.append([lm_name, oe_in, se_in, oe_out, se_out, n_in, n_out])
+        if "phi" in lm_name.lower():
+            phi2_index = i
+
+    if phi2_index is not None:
+        phi2_row = all_rows.pop(phi2_index)
+        all_rows.append(phi2_row)
+
+    rows_for_agg = all_rows[:-1] if phi2_index is not None else all_rows
+    
+    agg_oe_in_vals = [row[1] for row in rows_for_agg if not np.isnan(row[1])]
+    agg_se_in_vals = [row[2] for row in rows_for_agg if not np.isnan(row[2])]
+    agg_oe_out_vals = [row[3] for row in rows_for_agg if not np.isnan(row[3])]
+    agg_se_out_vals = [row[4] for row in rows_for_agg if not np.isnan(row[4])]
+    agg_n_in = sum([row[5] for row in rows_for_agg])
+    agg_n_out = sum([row[6] for row in rows_for_agg])
+    
+    agg_oe_in = np.mean(agg_oe_in_vals) if agg_oe_in_vals else np.nan
+    agg_se_in = np.sqrt(np.mean(np.array(agg_se_in_vals)**2)) if agg_se_in_vals else np.nan  # Pooled SE
+    agg_oe_out = np.mean(agg_oe_out_vals) if agg_oe_out_vals else np.nan
+    agg_se_out = np.sqrt(np.mean(np.array(agg_se_out_vals)**2)) if agg_se_out_vals else np.nan  # Pooled SE
+    
+    all_rows.append(["Aggregate", agg_oe_in, agg_se_in, agg_oe_out, agg_se_out, agg_n_in, agg_n_out])
+
+    df = pd.DataFrame(all_rows, columns=["LM Separator", "OE_in", "SE_in", "OE_out", "SE_out", "N_in", "N_out"])
+    
+    print(f"\n=== {dataset} Dataset - Appendix: Optimal Error Exponent (KL Divergence) Analysis ===")
+    print("KL Divergence: LM ∈ Authors vs LM ∉ Authors (higher = better separation)\n")
+    
+    table_rows = []
+    for _, row in df.iterrows():
+        lm_name = row["LM Separator"]
+        if not np.isnan(row["OE_in"]):
+            oe_in_str = f"{row['OE_in']:.4f} (±{row['SE_in']:.4f})"
+            n_in_str = f"{int(row['N_in'])}"
+        else:
+            oe_in_str = "N/A"
+            n_in_str = "0"
+        oe_out_str = f"{row['OE_out']:.4f} (±{row['SE_out']:.4f})"
+        n_out_str = f"{int(row['N_out'])}"
+        table_rows.append([lm_name, oe_in_str, oe_out_str, n_in_str, n_out_str])
+    
+    print(tabulate(table_rows, 
+                   headers=["LM Separator", "OE (LM ∈ authors)", "OE (LM ∉ authors)", 
+                           "#Pairs (∈authors)", "#Pairs (∉authors)"], 
+                   tablefmt="grid"))
+
+    fig, ax = plt.subplots(1, 1, figsize=(8, len(df)*0.8))
+    
+    heatmap_data = np.array([
+        df["OE_in"].values,
+        df["OE_out"].values
+    ]).T
+    
+    annotations = []
+    for i, (_, row) in enumerate(df.iterrows()):
+        if not np.isnan(row["OE_in"]):
+            ann_in = f"{row['OE_in']:.4f}\n±{row['SE_in']:.4f}"
+        else:
+            ann_in = "N/A"
+        ann_out = f"{row['OE_out']:.4f}\n±{row['SE_out']:.4f}"
+        annotations.append([ann_in, ann_out])
+    
+    cmap = plt.cm.RdYlGn  # Higher OE (green) is better separation
+    mask = np.isnan(heatmap_data)
+    
+    # Determine reasonable vmin/vmax from data
+    valid_data = heatmap_data[~mask]
+    if len(valid_data) > 0:
+        vmin = max(0, np.percentile(valid_data, 5))
+        vmax = np.percentile(valid_data, 95)
+    else:
+        vmin, vmax = 0, 1
+    
+    im = ax.imshow(heatmap_data, cmap=cmap, aspect='auto', vmin=vmin, vmax=vmax)
+    
+    cbar = plt.colorbar(im, ax=ax, shrink=0.8)
+    cbar.set_label('KL Divergence', rotation=270, labelpad=20, fontsize=12)
+    
+    ax.set_xticks(range(2))
+    ax.set_xticklabels(['LM ∈ authors', 'LM ∉ authors'], fontsize=11)
+    ax.set_yticks(range(len(df)))
+    
+    clean_names = []
+    for name in df["LM Separator"]:
+        if name == "Aggregate":
+            clean_names.append("Aggregate")
+        elif "llama" in name.lower():
+            clean_names.append("Llama-3.1-8B")
+        elif "falcon" in name.lower():
+            clean_names.append("Falcon-7B")
+        elif "phi" in name.lower():
+            clean_names.append("Phi-2")
+        elif "deepseek" in name.lower():
+            clean_names.append("DeepSeek-R1")
+        else:
+            clean_names.append(name)
+    
+    ax.set_yticklabels(clean_names, fontsize=11)
+    
+    for i in range(len(df)):
+        for j in range(2):
+            if not mask[i, j]:
+                ax.text(j, i, annotations[i][j], 
+                       ha='center', va='center', 
+                       fontsize=10, fontweight='bold',
+                       color='black')
+            else:
+                ax.text(j, i, annotations[i][j], 
+                       ha='center', va='center', 
+                       fontsize=10, fontweight='bold', color='gray')
+    
+    title_text = f'{dataset} Dataset: LM Separator Performance\n(KL Divergence ± Standard Error)'
+    ax.set_title(title_text, fontsize=14, fontweight='bold', pad=20)
+    
+    ax.set_xticks(np.arange(-0.5, 2, 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(df), 1), minor=True)
+    ax.grid(which='minor', color='white', linestyle='-', linewidth=2)
+    
+    info_text = "Aggregate excludes Phi-2. Higher KL divergence indicates better separation."
+    plt.figtext(0.5, 0.01, info_text, ha='center', fontsize=10, 
+                style='italic', wrap=True)
+    
+    plt.tight_layout()
+    plt.subplots_adjust(bottom=0.15) 
+    
+    if save_prefix:
+        plt.savefig(f"images/{save_prefix}_experiment1_oe_heatmap.png", 
+                   dpi=300, bbox_inches='tight', facecolor='white')
+    
+    plt.show()
+    
+    return df, table_rows
+
+
+def run_lm_comparison_appendix_js_oe(paths):
+    """
+    Generate detailed JS and OE tables and heatmaps for appendix.
+    Calls the new clean functions for consistent formatting.
+    
+    Note: This function is deprecated. Use run_lm_comparison_appendix_js() 
+    and run_lm_comparison_appendix_oe() separately for better control.
+    """
+    print("\n" + "="*80)
+    print("JENSEN-SHANNON DIVERGENCE ANALYSIS")
+    print("="*80)
+    js_df, js_table = run_lm_comparison_appendix_js(paths)
+    
+    print("\n" + "="*80)
+    print("OPTIMAL ERROR EXPONENT (KL DIVERGENCE) ANALYSIS")
+    print("="*80)
+    oe_df, oe_table = run_lm_comparison_appendix_oe(paths)
+    
+    return (js_df, js_table), (oe_df, oe_table)
 
 def optimal_error_exponent_viz(path_f0, path_f1, ax, author1, author2, title, n_points=2000):
     data_f0 = pd.read_csv(path_f0)["response"].dropna().values
