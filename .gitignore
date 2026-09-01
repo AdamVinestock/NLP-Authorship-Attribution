@@ -5,3 +5,23 @@ knowledge.md
 __pycache__/
 images/
 paper_assets/
+
+# LaTeX build intermediates
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.xdv
+
+# JMLR draft — collaborator's unpublished work, local only
+jmlr/
+
+# ISIT 2026 local-only working material
+isit2026/notes.md
+isit2026/figures/_local/
